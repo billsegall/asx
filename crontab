@@ -1,0 +1,42 @@
+# ASX project crontab — canonical source of truth
+# Install on harri: crontab /home/bill/code/asx/crontab
+#
+# m h  dom mon dow   command
+SHELL=/bin/bash
+STOCKDB=/home/bill/code/asx/asx-data/stockdb
+DATA=/home/bill/code/asx/asx-data
+ANNOUNCEMENTS=/home/bill/code/asx/asx-announcements
+WEB=/home/bill/code/asx/asx-web
+
+# First day of each month at 08:00 — symbols
+0 8 1 * * { [ "$(date +\%d)" = "01" ] || [ "$(date +\%u)" = "1" ]; } && make -C $STOCKDB fetch_symbols
+
+# And then get the list of name changes
+15 8 1 * * python3 $DATA/scripts/fetch_symbol_changes.py --db $STOCKDB/stockdb.db >> /tmp/symbol-changes.log 2>&1
+
+# Every trading day at 08:00 — short positions
+0 8 * * 1-5 make -C $STOCKDB fetch_shorts
+
+# Every week at 08:15 — splits
+0 8 * * 1-5 /bin/python3 $STOCKDB/fetch_splits.py --db $STOCKDB/stockdb.db
+
+# Weekly options refresh (Sunday 6am AEST = Saturday 20:00 UTC)
+0 20 * * 6 python3 $DATA/scripts/fetch_options.py --db $STOCKDB/stockdb.db >> /tmp/fetch_options.log 2>&1
+
+# Daily EOD from Yahoo Finance — weekdays at 5pm
+0 17 * * 1-5 python3 $STOCKDB/fetch_eod_daily.py --db $STOCKDB/stockdb.db >> $STOCKDB/logs/eod_daily.log 2>&1
+
+# And then run the algos
+30 17 * * 1-5 cd $WEB && python3 algo_runner.py >> /tmp/algo_runner.log 2>&1
+
+# Today's ASX announcements — fetched throughout the trading day (AEST)
+1 8 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
+2 9 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
+33 9 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
+44 9 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
+59 9 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
+15 10 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
+45 11 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
+45 13 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
+45 15 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
+15 17 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
