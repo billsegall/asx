@@ -9,16 +9,16 @@ ANNOUNCEMENTS=/home/bill/code/asx/asx-announcements
 WEB=/home/bill/code/asx/asx-web
 
 # First day of each month at 08:00 — symbols
-0 8 1 * * { [ "$(date +\%d)" = "01" ] || [ "$(date +\%u)" = "1" ]; } && make -C $STOCKDB fetch_symbols
+0 8 1 * * { [ "$(date +\%d)" = "01" ] || [ "$(date +\%u)" = "1" ]; } && make -C $STOCKDB fetch_symbols >> /tmp/fetch_symbols.log
 
 # And then get the list of name changes
 15 8 1 * * python3 $DATA/scripts/fetch_symbol_changes.py --db $STOCKDB/stockdb.db >> /tmp/symbol-changes.log 2>&1
 
 # Every trading day at 08:00 — short positions
-0 8 * * 1-5 make -C $STOCKDB fetch_shorts
+0 8 * * 1-5 make -C $STOCKDB fetch_shorts >> /tmp/fetch_shorts.log
 
 # Every week at 08:15 — splits
-0 8 * * 1-5 /bin/python3 $STOCKDB/fetch_splits.py --db $STOCKDB/stockdb.db
+0 8 * * 1-5 /bin/python3 $STOCKDB/fetch_splits.py --db $STOCKDB/stockdb.db >> /ymp/fetch_splits.log
 
 # Weekly options refresh (Sunday 6am AEST = Saturday 20:00 UTC)
 0 20 * * 6 python3 $DATA/scripts/fetch_options.py --db $STOCKDB/stockdb.db >> /tmp/fetch_options.log 2>&1
@@ -28,6 +28,12 @@ WEB=/home/bill/code/asx/asx-web
 
 # And then run the algos
 30 17 * * 1-5 cd $WEB && python3 algo_runner.py >> /tmp/algo_runner.log 2>&1
+
+# Weekly fundamentals from Yahoo Finance — Friday evening (after EOD + algos)
+30 18 * * 5 python3 $DATA/scripts/fetch_fundamentals.py --db $STOCKDB/stockdb.db >> /tmp/fetch_fundamentals.log 2>&1
+
+# Monthly dividends from Yahoo Finance — 1st of each month at 19:00 UTC
+0 19 1 * * python3 $DATA/scripts/fetch_dividends.py --db $STOCKDB/stockdb.db >> /tmp/fetch_dividends.log 2>&1
 
 # Today's ASX announcements — fetched throughout the trading day (AEST)
 1 8 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log 2>&1

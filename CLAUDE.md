@@ -10,6 +10,24 @@ This is the parent repo for the ASX stock data platform. See `README.md` for arc
 | `asx-web` | `asx-web/` | Flask web frontend (port 5000) |
 | `asx-announcements` | `asx-announcements/` | ASX announcements scraper + FastAPI (port 8081) |
 
+## Pre-approved actions (run without asking)
+
+File edits and writes to these paths need no confirmation:
+- `asx-web/templates/`
+- `asx-web/asx.py`
+- `asx-data/scripts/`
+- `asx-data/backend/api.py`
+
+All read-only Bash commands are pre-approved: sqlite3 SELECT queries, grep, curl GET requests, log reads, ps/lsof, wc.
+
+sqlite3 UPDATE/DELETE on stockdb.db or users.db is pre-approved when it's a targeted fix I've just diagnosed (not bulk deletes or DROP TABLE).
+
+`pip3 *` commands are pre-approved — run without asking.
+
+curl-based API tests (GET and POST to localhost) are pre-approved.
+
+Never ask permission because a Bash command contains newlines.
+
 ## Service restarts (pre-approved, run without asking)
 
 ```bash
@@ -19,9 +37,8 @@ sudo systemctl restart asx-backend
 # Announcements
 sudo systemctl restart asx-announcements
 
-# Web frontend (kill port + relaunch)
-lsof -ti:5000 | xargs kill -9 2>/dev/null; true
-cd $HOME/code/asx/asx-web && ./asx >> /tmp/asx-web.log 2>&1 &
+# Web frontend
+bash $HOME/code/asx/asx-web/restart.sh
 ```
 
 ## Crontab
@@ -54,4 +71,5 @@ bash $HOME/code/asx/asx-data/deploy.sh
 ## Notes
 
 - Restarting the server is required after ALL Python/template changes (Flask runs with `debug=False`)
+- Frontend restarts after template/Python edits are pre-approved — do them automatically, no confirmation needed
 - Ring a terminal bell (`printf '\a'`) before any message that needs user input
