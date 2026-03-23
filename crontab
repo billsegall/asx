@@ -35,8 +35,9 @@ WEB=/home/bill/code/asx/asx-web
 # Monthly dividends from Yahoo Finance — 1st of each month at 19:00 UTC
 0 19 1 * * python3 $DATA/scripts/fetch_dividends.py --db $STOCKDB/stockdb.db >> /tmp/fetch_dividends.log 2>&1
 
-# Daily commodity prices from Trading Economics — weekdays 21:00 UTC (7am AEST next day)
-0 21 * * 1-5 TE_API_KEY=$TE_API_KEY python3 $DATA/scripts/fetch_commodities.py --db $STOCKDB/stockdb.db >> /tmp/fetch_commodities.log 2>&1
+# Daily commodity prices (yfinance) — weekdays 21:00 UTC (7am AEST next day)
+# Switch to --source te and add TE_API_KEY=... when a Trading Economics key is available
+0 21 * * 1-5 python3 $DATA/scripts/fetch_commodities.py --db $STOCKDB/stockdb.db --source yf >> /tmp/fetch_commodities.log 2>&1
 
 # Today's ASX announcements — fetched throughout the trading day (AEST)
 1 8 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
