@@ -12,7 +12,7 @@ WEB=/home/bill/code/asx/asx-web
 0 8 1 * * { [ "$(date +\%d)" = "01" ] || [ "$(date +\%u)" = "1" ]; } && make -C $STOCKDB fetch_symbols >> /tmp/fetch_symbols.log
 
 # And then get the list of name changes
-15 8 1 * * python3 $DATA/scripts/fetch_symbol_changes.py --db $STOCKDB/stockdb.db >> /tmp/symbol-changes.log 2>&1
+15 8 1 * * python3 $DATA/scripts/fetch_symbol_changes.py --db $STOCKDB/stockdb.db >> /tmp/symbol-changes.log
 
 # Every trading day at 08:00 — short positions
 0 8 * * 1-5 make -C $STOCKDB fetch_shorts >> /tmp/fetch_shorts.log
@@ -21,26 +21,29 @@ WEB=/home/bill/code/asx/asx-web
 0 8 * * 1-5 /bin/python3 $STOCKDB/fetch_splits.py --db $STOCKDB/stockdb.db >> /ymp/fetch_splits.log
 
 # Weekly options refresh (Sunday 6am AEST = Saturday 20:00 UTC)
-0 20 * * 6 python3 $DATA/scripts/fetch_options.py --db $STOCKDB/stockdb.db >> /tmp/fetch_options.log 2>&1
+0 20 * * 6 python3 $DATA/scripts/fetch_options.py --db $STOCKDB/stockdb.db >> /tmp/fetch_options.log
 
 # Daily EOD from Yahoo Finance — weekdays at 5pm
-0 17 * * 1-5 python3 $STOCKDB/fetch_eod_daily.py --db $STOCKDB/stockdb.db >> $STOCKDB/logs/eod_daily.log 2>&1
+0 17 * * 1-5 python3 $STOCKDB/fetch_eod_daily.py --db $STOCKDB/stockdb.db >> $STOCKDB/logs/eod_daily.log
 
 # And then run the algos
-30 17 * * 1-5 cd $WEB && python3 algo_runner.py >> /tmp/algo_runner.log 2>&1
+30 17 * * 1-5 cd $WEB && python3 algo_runner.py >> /tmp/algo_runner.log
 
 # Weekly fundamentals from Yahoo Finance — Friday evening (after EOD + algos)
-30 18 * * 5 python3 $DATA/scripts/fetch_fundamentals.py --db $STOCKDB/stockdb.db >> /tmp/fetch_fundamentals.log 2>&1
+30 18 * * 5 python3 $DATA/scripts/fetch_fundamentals.py --db $STOCKDB/stockdb.db >> /tmp/fetch_fundamentals.log
+
+# Monthly annual financial statements (income/balance/cashflow) — Saturday after weekly fundamentals
+0 21 * * 6 python3 $DATA/scripts/fetch_financials.py --db $STOCKDB/stockdb.db >> /tmp/fetch_financials.log
 
 # Monthly dividends from Yahoo Finance — 1st of each month at 19:00 UTC
-0 19 1 * * python3 $DATA/scripts/fetch_dividends.py --db $STOCKDB/stockdb.db >> /tmp/fetch_dividends.log 2>&1
+0 19 1 * * python3 $DATA/scripts/fetch_dividends.py --db $STOCKDB/stockdb.db >> /tmp/fetch_dividends.log
 
 # Daily commodity prices (yfinance) — weekdays 21:00 UTC (7am AEST next day)
 # Switch to --source te and add TE_API_KEY=... when a Trading Economics key is available
-0 21 * * 1-5 python3 $DATA/scripts/fetch_commodities.py --db $STOCKDB/stockdb.db --source yf >> /tmp/fetch_commodities.log 2>&1
+0 21 * * 1-5 python3 $DATA/scripts/fetch_commodities.py --db $STOCKDB/stockdb.db --source yf >> /tmp/fetch_commodities.log
 
 # Today's ASX announcements — fetched throughout the trading day (AEST)
-1 8 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
+1 8 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log
 2 9 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
 33 9 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
 44 9 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
