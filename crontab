@@ -32,8 +32,14 @@ WEB=/home/bill/code/asx/asx-web
 # Weekly fundamentals from Yahoo Finance — Friday evening (after EOD + algos)
 30 18 * * 5 python3 $DATA/scripts/fetch_fundamentals.py --db $STOCKDB/stockdb.db >> /tmp/fetch_fundamentals.log
 
+# Weekly events fetch — Friday after fundamentals
+0 19 * * 5 python3 $DATA/scripts/fetch_events.py --db $STOCKDB/stockdb.db >> /tmp/fetch_events.log 2>&1
+
 # Monthly annual financial statements (income/balance/cashflow) — Saturday after weekly fundamentals
 0 21 * * 6 python3 $DATA/scripts/fetch_financials.py --db $STOCKDB/stockdb.db >> /tmp/fetch_financials.log
+
+# Monthly shares-on-issue history — Saturday after financials
+30 21 * * 6 python3 $DATA/scripts/fetch_shares.py --db $STOCKDB/stockdb.db >> /tmp/fetch_shares.log
 
 # Monthly dividends from Yahoo Finance — 1st of each month at 19:00 UTC
 0 19 1 * * python3 $DATA/scripts/fetch_dividends.py --db $STOCKDB/stockdb.db >> /tmp/fetch_dividends.log
