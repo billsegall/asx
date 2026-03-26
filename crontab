@@ -59,3 +59,6 @@ WEB=/home/bill/code/asx/asx-web
 45 13 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
 45 15 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
 15 17 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
+
+# Extract structured data from new announcement PDFs (runs after last scraper of the day)
+30 17 * * 1-5 $ANNOUNCEMENTS/venv/bin/python3 $ANNOUNCEMENTS/extract_structured.py >> $ANNOUNCEMENTS/logs/extract.log 2>&1
