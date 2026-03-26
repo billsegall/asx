@@ -49,7 +49,7 @@ WEB=/home/bill/code/asx/asx-web
 0 21 * * 1-5 python3 $DATA/scripts/fetch_commodities.py --db $STOCKDB/stockdb.db --source yf >> /tmp/fetch_commodities.log
 
 # Previous business day catch-up — fills any announcements filed after the last --today run
-55 7 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py >> $ANNOUNCEMENTS/logs/prevday.log 2>&1
+30 6 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py >> $ANNOUNCEMENTS/logs/prevday.log 2>&1
 
 # Today's ASX announcements — fetched throughout the trading day (AEST)
 1 8 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log
