@@ -68,6 +68,23 @@ bash $HOME/code/asx/asx-data/deploy.sh
 ```
 (`deploy.sh` = `git pull --ff-only` + `sudo systemctl restart asx-backend`)
 
+## Documentation requirements
+
+When adding or significantly changing a feature, update documentation in two places:
+
+**1. README.md in the affected repo** — developer-facing, kept in git:
+- New scripts: purpose, usage, CLI flags, cron schedule if applicable
+- New DB tables or API endpoints: schema/signature and what they contain
+- New extraction types: trigger pattern, source form, fields extracted
+- Architectural decisions worth preserving (why, not just what)
+
+**2. `/docs` page in asx-web** — user-facing, explains what the platform does:
+- New data shown on stock pages (director activity, NTA, events)
+- New calendar features
+- New extraction capabilities visible to the user
+
+If there is no `/docs` page yet, create one when the first user-facing feature warrants it.
+
 ## Notes
 
 - Restarting the server is required after ALL Python/template changes (Flask runs with `debug=False`)
