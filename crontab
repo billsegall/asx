@@ -18,7 +18,7 @@ WEB=/home/bill/code/asx/asx-web
 0 8 * * 1-5 make -C $STOCKDB fetch_shorts >> /tmp/fetch_shorts.log
 
 # Every week at 08:15 — splits
-0 8 * * 1-5 /bin/python3 $STOCKDB/fetch_splits.py --db $STOCKDB/stockdb.db >> /ymp/fetch_splits.log
+0 8 * * 1-5 /bin/python3 $STOCKDB/fetch_splits.py --db $STOCKDB/stockdb.db >> /tmp/fetch_splits.log
 
 # Weekly options refresh (Sunday 6am AEST = Saturday 20:00 UTC)
 0 20 * * 6 python3 $DATA/scripts/fetch_options.py --db $STOCKDB/stockdb.db >> /tmp/fetch_options.log
