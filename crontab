@@ -26,6 +26,9 @@ WEB=/home/bill/code/asx/asx-web
 # Daily EOD from Yahoo Finance — weekdays at 5pm
 0 17 * * 1-5 python3 $STOCKDB/fetch_eod_daily.py --db $STOCKDB/stockdb.db >> $STOCKDB/logs/eod_daily.log
 
+# Capture live option prices as EOD data — weekdays at 4pm AEST (6am UTC)
+0 6 * * 2-6 python3 $DATA/scripts/fetch_options_eod.py --db $STOCKDB/stockdb.db >> /tmp/fetch_options_eod.log
+
 # And then run the algos
 30 17 * * 1-5 cd $WEB && python3 algo_runner.py >> /tmp/algo_runner.log
 
