@@ -28,6 +28,22 @@ curl-based API tests (GET and POST to localhost) are pre-approved.
 
 Never ask permission because a Bash command contains newlines.
 
+## Database deletion — CRITICAL RULE
+
+**Before deleting or recreating ANY database file (.db), MUST:**
+
+1. Create a dated backup: `cp <db_file> <db_file>.backup.$(date +%Y%m%d_%H%M%S)`
+2. **STOP AND NOTIFY** the user with:
+   - What database will be deleted
+   - Why (e.g., "recreating schema", "testing", "corrupted data")
+   - Backup file location and timestamp
+3. **WAIT FOR EXPLICIT ACKNOWLEDGMENT** before proceeding with deletion
+4. After backup is confirmed to exist, proceed with deletion only
+
+This rule applies to ALL databases: announcements.db, stockdb.db, users.db, etc.
+
+**History:** announcements.db was accidentally deleted without backup (2026-04-07), losing 14,015 announcement records. Restore required re-indexing from disk PDFs and re-fetching metadata from ASX website.
+
 ## Service restarts (pre-approved, run without asking)
 
 ```bash
