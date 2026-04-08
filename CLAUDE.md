@@ -54,7 +54,7 @@ sudo systemctl restart asx-backend
 sudo systemctl restart asx-announcements
 
 # Web frontend
-bash $HOME/code/asx/asx-web/restart.sh
+sudo systemctl restart asx-web
 ```
 
 ## Crontab
