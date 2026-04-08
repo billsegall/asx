@@ -7,7 +7,7 @@ This is the parent repo for the ASX stock data platform. See `README.md` for arc
 | Repo | Path | Purpose |
 |------|------|---------|
 | `asx-data` | `asx-data/` | Stock data pipeline + REST API (port 8082) |
-| `asx-web` | `asx-web/` | Flask web frontend (port 5000) |
+| `asx-web` | `asx-web/` | Flask web frontend (port 7000) |
 | `asx-announcements` | `asx-announcements/` | ASX announcements scraper + FastAPI (port 8081) |
 
 ## Pre-approved actions (run without asking)
