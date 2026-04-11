@@ -1,0 +1,550 @@
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+/home/bill/.local/lib/python3.12/site-packages/flask_limiter/_extension.py:364: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+  warnings.warn(
+ * Serving Flask app 'asx.py'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7000
+ * Running on http://10.0.1.1:7000
+Press CTRL+C to quit
+127.0.0.1 - - [12/Apr/2026 07:02:23] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Apr/2026 07:02:33] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:03:32] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:04:32] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:04:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:05:10] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:05:32] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:05:32] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:05:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:06:32] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:06:32] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:06:38] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:07:33] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:08:32] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:09:33] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:09:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:10:10] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:10:32] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:10:32] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:10:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:11:32] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:11:32] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:11:38] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:12:33] "GET /api/quote/RXR HTTP/1.1" 200 -
+asx: line 9: 267598 Killed                  flask run --host=0.0.0.0 --port=7000
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+/home/bill/.local/lib/python3.12/site-packages/flask_limiter/_extension.py:364: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+  warnings.warn(
+ * Serving Flask app 'asx.py'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7000
+ * Running on http://10.0.1.1:7000
+Press CTRL+C to quit
+127.0.0.1 - - [12/Apr/2026 07:12:58] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Apr/2026 07:13:15] "GET /dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:13:15] "GET /api/dashboard/symbols HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:13:15] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:13:15] "GET /static/favicon.ico HTTP/1.1" 304 -
+127.0.0.1 - - [12/Apr/2026 07:13:15] "GET /api/research HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:13:15] "GET /api/commodities HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:13:15] "GET /api/announcements?limit=200&price_sensitive=1 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:13:15] "GET /api/shorts HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:13:15] "POST /api/enrich HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:13:15] "POST /api/enrich HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:13:16] "GET /api/events/upcoming?symbols=ING,KSL,MNRS,TLS,WBC,EDV,WOW,AAA,BB1,CCC,DDD,EE1,T3D,ELD,EXROB,FFF,GGG,CUV,CVL,CYL,FDR,BHP,BTR,CBA,MEI,NEU,MMI,COD,AQI,DEL,GTE,WC1,TKM,VRL,HGO,PMT,DVP,KLI,TNC,CNB,EXR,RAP,ALD,MVF,TWE,RFF,LAU,OBM,ACF,CSL,GNMO,GDM,STN,PEN,AR1,POL,DRE,GRL,VAU,BGL,KM1,DXB,EZZ,ATX&days=60&past=0 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:13:32] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:14:33] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:14:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:14:51] "GET /api/dashboard/symbols HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:14:51] "POST /api/enrich HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:14:51] "GET /api/research HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:14:51] "GET /api/commodities HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:14:51] "GET /api/shorts HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:14:51] "GET /api/announcements?limit=200&price_sensitive=1 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:14:51] "POST /api/enrich HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:14:51] "GET /api/events/upcoming?symbols=ING,KSL,MNRS,TLS,WBC,EDV,WOW,AAA,BB1,CCC,DDD,EE1,T3D,ELD,EXROB,FFF,GGG,CUV,CVL,CYL,FDR,BHP,BTR,CBA,MEI,NEU,MMI,COD,AQI,DEL,GTE,WC1,TKM,VRL,HGO,PMT,DVP,KLI,TNC,CNB,EXR,RAP,ALD,MVF,TWE,RFF,LAU,OBM,ACF,CSL,GNMO,GDM,STN,PEN,AR1,POL,DRE,GRL,VAU,BGL,KM1,DXB,EZZ,ATX&days=60&past=0 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:14:55] "GET /api/dashboard/symbols HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:14:55] "POST /api/enrich HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:14:55] "GET /api/research HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:14:55] "GET /api/commodities HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:14:55] "GET /api/shorts HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:14:55] "GET /api/announcements?limit=200&price_sensitive=1 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:14:55] "POST /api/enrich HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:14:55] "GET /api/events/upcoming?symbols=ING,KSL,MNRS,TLS,WBC,EDV,WOW,AAA,BB1,CCC,DDD,EE1,T3D,ELD,EXROB,FFF,GGG,CUV,CVL,CYL,FDR,BHP,BTR,CBA,MEI,NEU,MMI,COD,AQI,DEL,GTE,WC1,TKM,VRL,HGO,PMT,DVP,KLI,TNC,CNB,EXR,RAP,ALD,MVF,TWE,RFF,LAU,OBM,ACF,CSL,GNMO,GDM,STN,PEN,AR1,POL,DRE,GRL,VAU,BGL,KM1,DXB,EZZ,ATX&days=60&past=0 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:15:00] "GET /api/dashboard/symbols HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:15:00] "POST /api/enrich HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:15:00] "GET /api/research HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:15:00] "GET /api/commodities HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:15:00] "GET /api/shorts HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:15:00] "POST /api/enrich HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:15:00] "GET /api/announcements?limit=200&price_sensitive=1 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:15:00] "GET /api/events/upcoming?symbols=ING,KSL,MNRS,TLS,WBC,EDV,WOW,AAA,BB1,CCC,DDD,EE1,T3D,ELD,EXROB,FFF,GGG,CUV,CVL,CYL,FDR,BHP,BTR,CBA,MEI,NEU,MMI,COD,AQI,DEL,GTE,WC1,TKM,VRL,HGO,PMT,DVP,KLI,TNC,CNB,EXR,RAP,ALD,MVF,TWE,RFF,LAU,OBM,ACF,CSL,GNMO,GDM,STN,PEN,AR1,POL,DRE,GRL,VAU,BGL,KM1,DXB,EZZ,ATX&days=60&past=0 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:15:32] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:15:32] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:15:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:16:18] "GET /research HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:16:18] "GET /api/users/current HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:16:18] "GET /api/research HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:16:18] "GET /api/research/folders HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:16:18] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:16:18] "POST /api/enrich HTTP/1.1" 200 -
+asx: line 9: 268997 Killed                  flask run --host=0.0.0.0 --port=7000
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+/home/bill/.local/lib/python3.12/site-packages/flask_limiter/_extension.py:364: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+  warnings.warn(
+ * Serving Flask app 'asx.py'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7000
+ * Running on http://10.0.1.1:7000
+Press CTRL+C to quit
+127.0.0.1 - - [12/Apr/2026 07:16:27] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Apr/2026 07:16:32] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:16:32] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:16:38] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:17:16] "GET /dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:17:17] "GET /api/dashboard/symbols HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:17:17] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:17:17] "GET /static/favicon.ico HTTP/1.1" 304 -
+127.0.0.1 - - [12/Apr/2026 07:17:17] "POST /api/enrich HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:17:17] "GET /api/research HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:17:17] "GET /api/commodities HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:17:17] "GET /api/shorts HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:17:17] "POST /api/enrich HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:17:17] "GET /api/announcements?limit=200&price_sensitive=1 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:17:17] "GET /api/events/upcoming?symbols=ING,KSL,MNRS,TLS,WBC,EDV,WOW,AAA,BB1,CCC,DDD,EE1,T3D,ELD,EXROB,FFF,GGG,CUV,CVL,CYL,FDR,BHP,BTR,CBA,MEI,NEU,MMI,COD,AQI,DEL,GTE,WC1,TKM,VRL,HGO,PMT,DVP,KLI,TNC,CNB,EXR,RAP,ALD,MVF,TWE,RFF,LAU,OBM,ACF,CSL,GNMO,GDM,STN,PEN,AR1,POL,DRE,GRL,VAU,BGL,KM1,DXB,EZZ,ATX&days=60&past=0 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:17:20] "GET /announcements?symbol=ACF HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:17:20] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:17:21] "GET /api/announcements?limit=5000 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:17:32] "GET /announcements?symbol=ACF HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:17:32] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:17:33] "GET /api/announcements?limit=5000 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:17:33] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:18:33] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:19:31] "GET /dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:19:32] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:19:32] "GET /static/favicon.ico HTTP/1.1" 304 -
+127.0.0.1 - - [12/Apr/2026 07:19:32] "GET /api/dashboard/symbols HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:19:32] "GET /api/research HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:19:33] "GET /api/announcements?limit=200&price_sensitive=1 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:19:33] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:19:36] "GET /api/events/upcoming?symbols=ING,KSL,MNRS,TLS,WBC,EDV,WOW,AAA,BB1,CCC,DDD,EE1,T3D,ELD,EXROB,FFF,GGG,CUV,CVL,CYL,FDR,BHP,BTR,CBA,MEI,NEU,MMI,COD,AQI,DEL,GTE,WC1,TKM,VRL,HGO,PMT,DVP,KLI,TNC,CNB,EXR,RAP,ALD,MVF,TWE,RFF,LAU,OBM,ACF,CSL,GNMO,GDM,STN,PEN,AR1,POL,DRE,GRL,VAU,BGL,KM1,DXB,EZZ,ATX&days=60&past=0 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:19:36] "GET /api/commodities HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:19:36] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:19:37] "GET /api/shorts HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:19:40] "POST /api/enrich HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:19:40] "POST /api/enrich HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:20:32] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:20:32] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:20:33] "GET /api/indices HTTP/1.1" 200 -
+asx: line 9: 269817 Killed                  flask run --host=0.0.0.0 --port=7000
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+/home/bill/.local/lib/python3.12/site-packages/flask_limiter/_extension.py:364: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+  warnings.warn(
+ * Serving Flask app 'asx.py'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7000
+ * Running on http://10.0.1.1:7000
+Press CTRL+C to quit
+asx: line 9: 270121 Killed                  flask run --host=0.0.0.0 --port=7000
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+/home/bill/.local/lib/python3.12/site-packages/flask_limiter/_extension.py:364: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+  warnings.warn(
+ * Serving Flask app 'asx.py'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7000
+ * Running on http://10.0.1.1:7000
+Press CTRL+C to quit
+127.0.0.1 - - [12/Apr/2026 07:21:10] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Apr/2026 07:21:32] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:21:33] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:21:38] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:21:40] "GET /dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:21:40] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:21:40] "GET /static/favicon.ico HTTP/1.1" 304 -
+127.0.0.1 - - [12/Apr/2026 07:21:40] "GET /api/dashboard/symbols HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:21:40] "POST /api/enrich HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:21:40] "GET /api/research HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:21:40] "POST /api/enrich HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:21:41] "GET /api/announcements?limit=200&price_sensitive=1 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:21:41] "GET /api/commodities HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:21:41] "GET /api/shorts HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:21:42] "GET /api/events/upcoming?symbols=ING,KSL,MNRS,TLS,WBC,EDV,WOW,AAA,BB1,CCC,DDD,EE1,T3D,ELD,EXROB,FFF,GGG,CUV,CVL,CYL,FDR,BHP,BTR,CBA,MEI,NEU,MMI,COD,AQI,DEL,GTE,WC1,TKM,VRL,HGO,PMT,DVP,KLI,TNC,CNB,EXR,RAP,ALD,MVF,TWE,RFF,LAU,OBM,ACF,CSL,GNMO,GDM,STN,PEN,AR1,POL,DRE,GRL,VAU,BGL,KM1,DXB,EZZ,ATX&days=60&past=0 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:21:45] "GET /announcements?symbol=WBC HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:21:45] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:21:46] "GET /api/announcements?limit=5000 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:22:32] "GET /api/quote/RXR HTTP/1.1" 200 -
+asx: line 9: 270462 Killed                  flask run --host=0.0.0.0 --port=7000
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+/home/bill/.local/lib/python3.12/site-packages/flask_limiter/_extension.py:364: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+  warnings.warn(
+ * Serving Flask app 'asx.py'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7000
+ * Running on http://10.0.1.1:7000
+Press CTRL+C to quit
+127.0.0.1 - - [12/Apr/2026 07:23:51] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Apr/2026 07:24:07] "GET /dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:24:07] "GET /api/dashboard/symbols HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:24:07] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:24:07] "GET /static/favicon.ico HTTP/1.1" 304 -
+127.0.0.1 - - [12/Apr/2026 07:24:07] "POST /api/enrich HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:24:07] "GET /api/research HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:24:07] "GET /api/commodities HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:24:07] "GET /api/shorts HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:24:07] "POST /api/enrich HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:24:07] "GET /api/announcements?limit=200&price_sensitive=1 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:24:07] "GET /api/events/upcoming?symbols=ING,KSL,MNRS,TLS,WBC,EDV,WOW,AAA,BB1,CCC,DDD,EE1,T3D,ELD,EXROB,FFF,GGG,CUV,CVL,CYL,FDR,BHP,BTR,CBA,MEI,NEU,MMI,COD,AQI,DEL,GTE,WC1,TKM,VRL,HGO,PMT,DVP,KLI,TNC,CNB,EXR,RAP,ALD,MVF,TWE,RFF,LAU,OBM,ACF,CSL,GNMO,GDM,STN,PEN,AR1,POL,DRE,GRL,VAU,BGL,KM1,DXB,EZZ,ATX&days=60&past=0 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:24:09] "GET /announcements?symbol=ALD HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:24:09] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:24:09] "GET /api/announcements?limit=5000 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:24:32] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:24:33] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:25:33] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:25:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:25:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:26:09] "GET /stock/IYL HTTP/1.1" 404 -
+127.0.0.1 - - [12/Apr/2026 07:26:10] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:26:17] "GET /stock/IYL HTTP/1.1" 404 -
+127.0.0.1 - - [12/Apr/2026 07:26:17] "GET /api/indices HTTP/1.1" 200 -
+asx: line 9: 272022 Killed                  flask run --host=0.0.0.0 --port=7000
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+/home/bill/.local/lib/python3.12/site-packages/flask_limiter/_extension.py:364: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+  warnings.warn(
+ * Serving Flask app 'asx.py'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7000
+ * Running on http://10.0.1.1:7000
+Press CTRL+C to quit
+127.0.0.1 - - [12/Apr/2026 07:26:28] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Apr/2026 07:26:32] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:26:33] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:26:38] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:26:41] "GET /api/announcements/03081630/pdf HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:27:15] "GET /announcements?symbol=ALD HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:27:16] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:27:16] "GET /static/favicon.ico HTTP/1.1" 304 -
+127.0.0.1 - - [12/Apr/2026 07:27:16] "GET /api/announcements?limit=5000 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:27:22] "GET /dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:27:22] "GET /api/dashboard/symbols HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:27:22] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:27:22] "GET /static/favicon.ico HTTP/1.1" 304 -
+127.0.0.1 - - [12/Apr/2026 07:27:22] "GET /api/research HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:27:23] "GET /api/announcements?limit=200&price_sensitive=1 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:27:24] "GET /api/events/upcoming?symbols=ING,KSL,MNRS,TLS,WBC,EDV,WOW,AAA,BB1,CCC,DDD,EE1,T3D,ELD,EXROB,FFF,GGG,CUV,CVL,CYL,FDR,BHP,BTR,CBA,MEI,NEU,MMI,COD,AQI,DEL,GTE,WC1,TKM,VRL,HGO,PMT,DVP,KLI,TNC,CNB,EXR,RAP,ALD,MVF,TWE,RFF,LAU,OBM,ACF,CSL,GNMO,GDM,STN,PEN,AR1,POL,DRE,GRL,VAU,BGL,KM1,DXB,EZZ,ATX&days=60&past=0 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:27:24] "GET /api/commodities HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:27:25] "GET /api/shorts HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:27:26] "POST /api/enrich HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:27:26] "POST /api/enrich HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:27:29] "GET /announcements?symbol=ALD HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:27:29] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:27:29] "GET /api/announcements?limit=5000 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:27:32] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:27:35] "GET /announcements HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:27:35] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:27:35] "GET /api/announcements?limit=5000 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:27:56] "GET /stock/DHO HTTP/1.1" 404 -
+127.0.0.1 - - [12/Apr/2026 07:27:56] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:28:00] "GET /api/announcements/03080876/pdf HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:28:33] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:29:32] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:29:33] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:30:33] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:30:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:30:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:31:32] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:31:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:31:38] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:32:32] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:33:33] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:34:32] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:34:33] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:35:33] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:35:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:35:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:36:32] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:36:33] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:36:38] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:37:32] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:38:33] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:39:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:39:33] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:40:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:40:33] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:40:35] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:41:30] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:41:31] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:41:38] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:42:16] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:43:09] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:44:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:44:33] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:45:15] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:45:20] "GET /announcements HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:45:20] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:45:20] "GET /api/announcements?limit=5000 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:45:28] "GET /stock/IYL HTTP/1.1" 404 -
+127.0.0.1 - - [12/Apr/2026 07:45:28] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:45:32] "GET /api/announcements/03080012/pdf HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:45:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:45:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:46:32] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:46:38] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:47:11] "POST /api/enrich HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:47:11] "POST /api/enrich HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:47:16] "GET /announcements?symbol=WBC HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:47:16] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:47:17] "GET /api/announcements?limit=5000 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:47:23] "GET /api/announcements/03077678/pdf HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:47:35] "GET /announcements?symbol=WBC HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:47:35] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:47:35] "GET /api/announcements?limit=5000 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:47:44] "GET /api/announcements/03077402/pdf HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:48:03] "GET /api/quote/RXR HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:48:06] "GET /announcements HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:48:06] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:48:06] "GET /api/announcements?limit=5000 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:50:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:50:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:51:32] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:51:38] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:52:12] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:53:06] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:54:07] "GET /api/symbols?q=3 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:54:08] "GET /api/symbols?q=3d HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:54:10] "GET /api/symbols?q=3dp HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:54:11] "GET /stock/3DP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:54:11] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:54:11] "GET /api/lists?type=watchlist&symbol=3DP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:54:11] "GET /api/research?symbol=3DP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:54:12] "GET /api/announcements/3DP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:54:12] "GET /api/extracted/quarterly-cashflow/3DP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:54:12] "GET /api/periodic-reports/3DP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:54:12] "GET /api/extracted/nta/3DP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:54:12] "GET /api/extracted/cleansing/3DP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:54:12] "GET /api/extracted/director-notices/3DP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:54:12] "GET /api/shares/3DP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:54:12] "GET /api/financials/3DP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:54:12] "GET /api/fundamentals/3DP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:54:12] "GET /api/events/3DP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:54:12] "GET /api/dividends/3DP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:54:12] "GET /api/stock/3DP?start=20210411 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:54:13] "GET /api/quote/3DP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:11] "GET /api/quote/3DP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:50] "GET /dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:51] "GET /api/dashboard/symbols HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:51] "GET /api/research HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:51] "GET /api/commodities HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:51] "GET /api/shorts HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:51] "POST /api/enrich HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:51] "POST /api/enrich HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:51] "GET /api/announcements?limit=200&price_sensitive=1 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:51] "GET /api/events/upcoming?symbols=ING,KSL,MNRS,TLS,WBC,EDV,WOW,AAA,BB1,CCC,DDD,EE1,T3D,ELD,EXROB,FFF,GGG,CUV,CVL,CYL,FDR,BHP,BTR,CBA,MEI,NEU,MMI,COD,AQI,DEL,GTE,WC1,TKM,VRL,HGO,PMT,DVP,KLI,TNC,CNB,EXR,RAP,ALD,MVF,TWE,RFF,LAU,OBM,ACF,CSL,GNMO,GDM,STN,PEN,AR1,POL,DRE,GRL,VAU,BGL,KM1,DXB,EZZ,ATX&days=60&past=0 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:51] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:55] "GET /api/symbols?q=BH HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:55] "GET /api/symbols?q=BHP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:55] "GET /stock/BHP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:55] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:55] "GET /api/research?symbol=BHP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:55] "GET /api/lists?type=watchlist&symbol=BHP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:55] "GET /api/financials/BHP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:56] "GET /api/shares/BHP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:56] "GET /api/periodic-reports/BHP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:56] "GET /api/extracted/director-notices/BHP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:56] "GET /api/extracted/cleansing/BHP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:56] "GET /api/extracted/quarterly-cashflow/BHP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:56] "GET /api/announcements/BHP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:56] "GET /api/extracted/nta/BHP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:56] "GET /api/events/BHP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:56] "GET /api/fundamentals/BHP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:56] "GET /api/dividends/BHP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:56] "GET /api/stock/BHP?start=20210411 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:55:57] "GET /api/quote/BHP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:56:12] "GET /api/quote/3DP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:56:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:56:38] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:56:55] "GET /api/quote/BHP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:57:06] "GET /announcements HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:57:06] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:57:06] "GET /api/announcements?limit=5000 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:57:12] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:57:12] "GET /api/quote/3DP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:57:20] "GET /announcements HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:57:20] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:57:20] "GET /static/favicon.ico HTTP/1.1" 304 -
+127.0.0.1 - - [12/Apr/2026 07:57:20] "GET /api/announcements?limit=5000 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:57:25] "GET /stock/DHO HTTP/1.1" 404 -
+127.0.0.1 - - [12/Apr/2026 07:57:25] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:58:12] "GET /api/quote/3DP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:58:55] "GET /announcements HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:58:55] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:58:55] "GET /static/favicon.ico HTTP/1.1" 304 -
+127.0.0.1 - - [12/Apr/2026 07:58:55] "GET /api/announcements?limit=5000 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:59:01] "GET /api/announcements/03080876/pdf HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:59:12] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:59:12] "GET /api/quote/3DP HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:59:57] "GET /stock/DHOF HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:59:58] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:59:58] "GET /api/research?symbol=DHOF HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:59:58] "GET /api/lists?type=watchlist&symbol=DHOF HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:59:58] "GET /api/fundamentals/DHOF HTTP/1.1" 404 -
+127.0.0.1 - - [12/Apr/2026 07:59:58] "GET /api/shares/DHOF HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:59:58] "GET /api/financials/DHOF HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:59:58] "GET /api/stock/DHOF?start=20210411 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:59:58] "GET /api/extracted/quarterly-cashflow/DHOF HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:59:58] "GET /api/extracted/nta/DHOF HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:59:58] "GET /api/events/DHOF HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:59:58] "GET /api/extracted/cleansing/DHOF HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:59:58] "GET /api/periodic-reports/DHOF HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:59:58] "GET /api/announcements/DHOF HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:59:58] "GET /api/extracted/director-notices/DHOF HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 07:59:59] "GET /api/quote/DHOF HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:00:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:00:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:00:36] "GET /announcements HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:00:36] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:00:36] "GET /static/favicon.ico HTTP/1.1" 304 -
+127.0.0.1 - - [12/Apr/2026 08:00:36] "GET /api/announcements?limit=5000 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:00:59] "GET /api/quote/DHOF HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:01:22] "GET /api/announcements/03080511/pdf HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:01:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:01:34] "GET /api/symbols?q=GH HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:01:34] "GET /api/symbols?q=GHI HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:01:34] "GET /api/announcements/DHOF?limit=1 HTTP/1.1" 302 -
+127.0.0.1 - - [12/Apr/2026 08:01:34] "GET /stock/GHI HTTP/1.1" 404 -
+127.0.0.1 - - [12/Apr/2026 08:01:35] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:01:38] "GET /api/indices HTTP/1.1" 200 -
+asx: line 9: 272596 Killed                  flask run --host=0.0.0.0 --port=7000
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+/home/bill/.local/lib/python3.12/site-packages/flask_limiter/_extension.py:364: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
+  warnings.warn(
+ * Serving Flask app 'asx.py'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7000
+ * Running on http://10.0.1.1:7000
+Press CTRL+C to quit
+127.0.0.1 - - [12/Apr/2026 08:02:06] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [12/Apr/2026 08:02:12] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:02:18] "GET /announcements HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:02:18] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:02:18] "GET /api/announcements?limit=5000 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:02:51] "GET /api/announcements/03080511/pdf HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:04:19] "GET /announcements HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:04:34] "GET /api/announcements?limit=5000 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:04:34] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:05:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:05:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:05:36] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:06:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:06:36] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:06:38] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:07:58] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:09:35] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:10:43] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:10:45] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:10:46] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:11:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:11:36] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:11:38] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:14:34] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:15:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:15:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:15:36] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:16:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:16:36] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:16:39] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:19:34] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:20:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:20:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:20:37] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:21:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:21:36] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:22:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:23:34] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:24:34] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:25:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:25:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:25:37] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:26:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:26:36] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:27:04] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:27:17] "GET /announcements HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:27:17] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:27:17] "GET /static/favicon.ico HTTP/1.1" 304 -
+127.0.0.1 - - [12/Apr/2026 08:27:18] "GET /api/announcements?limit=5000 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:27:29] "GET /announcements HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:27:29] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:27:29] "GET /static/favicon.ico HTTP/1.1" 304 -
+127.0.0.1 - - [12/Apr/2026 08:27:29] "GET /api/announcements?limit=5000 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:27:34] "GET /stock/DCO HTTP/1.1" 404 -
+127.0.0.1 - - [12/Apr/2026 08:27:35] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:27:41] "GET /announcements?symbol=ACF HTTP/1.1" 302 -
+127.0.0.1 - - [12/Apr/2026 08:27:41] "GET /login?next=/announcements?symbol%3DACF HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:27:44] "GET /announcements?symbol=WBC HTTP/1.1" 302 -
+127.0.0.1 - - [12/Apr/2026 08:27:44] "GET /login?next=/announcements?symbol%3DWBC HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:27:47] "GET /announcements?symbol=ALD HTTP/1.1" 302 -
+127.0.0.1 - - [12/Apr/2026 08:27:47] "GET /login?next=/announcements?symbol%3DALD HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:27:50] "GET /stock/IYL HTTP/1.1" 302 -
+127.0.0.1 - - [12/Apr/2026 08:27:50] "GET /login?next=/stock/IYL HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:27:53] "GET /api/announcements/03081630/pdf HTTP/1.1" 302 -
+127.0.0.1 - - [12/Apr/2026 08:27:53] "GET /login?next=/api/announcements/03081630/pdf HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:29:17] "GET /stock/JEG HTTP/1.1" 404 -
+127.0.0.1 - - [12/Apr/2026 08:29:17] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:29:19] "GET /stock/DHO HTTP/1.1" 302 -
+127.0.0.1 - - [12/Apr/2026 08:29:19] "GET /login?next=/stock/DHO HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:29:23] "GET /api/announcements/03080876/pdf HTTP/1.1" 302 -
+127.0.0.1 - - [12/Apr/2026 08:29:23] "GET /login?next=/api/announcements/03080876/pdf HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:29:34] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:29:37] "GET /api/announcements/03079816/pdf HTTP/1.1" 500 -
+127.0.0.1 - - [12/Apr/2026 08:30:03] "GET /api/symbols?q=C HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:30:03] "GET /api/symbols?q=CT HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:30:03] "GET /api/symbols?q=CTW HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:30:04] "GET /api/symbols?q=CT HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:30:07] "GET /api/symbols?q=CTW HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:30:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:30:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:31:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:31:36] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:31:38] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:32:30] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:34:28] "GET /announcements HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:34:29] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:34:29] "GET /static/favicon.ico HTTP/1.1" 304 -
+127.0.0.1 - - [12/Apr/2026 08:34:29] "GET /api/announcements?limit=5000 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:34:34] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:34:40] "GET /api/announcements/03079816/pdf HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:35:16] "GET /api/announcements/03079826/pdf HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:35:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:35:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:36:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:36:38] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:37:11] "GET /dashboard HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:37:11] "GET /api/dashboard/symbols HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:37:11] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:37:11] "GET /api/research HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:37:11] "GET /api/commodities HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:37:11] "GET /api/shorts HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:37:11] "POST /api/enrich HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:37:11] "POST /api/enrich HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:37:16] "GET /api/announcements?limit=200&price_sensitive=1 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:37:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:37:36] "GET /api/events/upcoming?symbols=ING,KSL,MNRS,TLS,WBC,EDV,WOW,AAA,BB1,CCC,DDD,EE1,T3D,ELD,EXROB,FFF,GGG,CUV,CVL,CYL,FDR,BHP,BTR,CBA,MEI,NEU,MMI,COD,AQI,DEL,GTE,WC1,TKM,VRL,HGO,PMT,DVP,KLI,TNC,CNB,EXR,RAP,ALD,MVF,TWE,RFF,LAU,OBM,ACF,CSL,GNMO,GDM,STN,PEN,AR1,POL,DRE,GRL,VAU,BGL,KM1,DXB,EZZ,ATX&days=60&past=0 HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:39:30] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:40:33] "GET /api/indices HTTP/1.1" 200 -
+127.0.0.1 - - [12/Apr/2026 08:40:33] "GET /api/indices HTTP/1.1" 200 -

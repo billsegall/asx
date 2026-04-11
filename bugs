@@ -1,0 +1,5 @@
+  ⎿  /home/bill/code/asx/asx-announcements/extract_structured.py:1339: Depr
+     ecationWarning: datetime.datetime.utcnow() is deprecated and scheduled
+      for removal in a future version. Use timezone-aware objects to repres
+     … +15 lines (ctrl+o to expand)
+
