@@ -71,3 +71,6 @@ WEB=/home/bill/code/asx/asx-web
 # — end-of-day run catches all remaining announcements
 30 10 * * 1-5 $ANNOUNCEMENTS/venv/bin/python3 $ANNOUNCEMENTS/extract_structured.py >> $ANNOUNCEMENTS/logs/extract.log 2>&1
 30 17 * * 1-5 $ANNOUNCEMENTS/venv/bin/python3 $ANNOUNCEMENTS/extract_structured.py >> $ANNOUNCEMENTS/logs/extract.log 2>&1
+
+# Weekly cleanup of fermi_api_calls rows older than 90 days (Sunday 3am)
+0 3 * * 0 python3 -c "import sqlite3,os; from datetime import datetime,timezone,timedelta; db=os.path.join('$WEB','users.db'); c=sqlite3.connect(db); r=c.execute('DELETE FROM fermi_api_calls WHERE timestamp < ?',((datetime.now(timezone.utc)-timedelta(days=90)).strftime('%Y-%m-%dT%H:%M:%SZ'),)); c.commit(); print(f'Deleted {r.rowcount} rows'); c.close()" >> /tmp/fermi_cleanup.log 2>&1
