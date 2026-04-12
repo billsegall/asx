@@ -72,7 +72,7 @@ asx-web/asx.py           (port 5000, proxies to backend)
 - `corporate_events` — splits etc.
 - `symbol_changes` — ASX code renames (old → new)
 - `asx_options` — listed options (from rosser.com.au)
-- `commodity_meta` — 22 tracked commodities with units and source info
+- `commodity_meta` — 25 tracked commodities with units and source info
 - `commodity_prices` — daily/weekly commodity prices (4 sources: yfinance, Trading Economics, metals.dev, Jupiter Mines)
 
 `users.db` (asx-web only, gitignored):
