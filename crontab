@@ -7,6 +7,7 @@ STOCKDB=/home/bill/code/asx/asx-data/stockdb
 DATA=/home/bill/code/asx/asx-data
 ANNOUNCEMENTS=/home/bill/code/asx/asx-announcements
 WEB=/home/bill/code/asx/asx-web
+METALS_DEV_API_KEY=ISPELSLJBHBURV1FQYO43651FQYO4
 
 # First day of each month at 08:00 — symbols
 0 8 1 * * { [ "$(date +\%d)" = "01" ] || [ "$(date +\%u)" = "1" ]; } && make -C $STOCKDB fetch_symbols >> /tmp/fetch_symbols.log
@@ -54,6 +55,18 @@ WEB=/home/bill/code/asx/asx-web
 # Daily commodity prices (yfinance) — weekdays 21:00 UTC (7am AEST next day)
 # Switch to --source te and add TE_API_KEY=... when a Trading Economics key is available
 0 21 * * 1-5 python3 $DATA/scripts/fetch_commodities.py --db $STOCKDB/stockdb.db --source yf >> /tmp/fetch_commodities.log
+
+# Trading Economics commodities — weekly Wednesday 22:00 UTC (Thursday 8am AEST)
+# Fetches: THERMAL-COAL, ALUMINIUM, ZINC, NICKEL, LEAD, IRON-ORE, NATURAL-GAS
+0 22 * * 3 python3 $DATA/scripts/fetch_trading_economics.py --db $STOCKDB/stockdb.db --all >> /tmp/fetch_trading_economics.log 2>&1
+
+# Manganese price from Jupiter Mines/Shanghai Metals Market — weekly Saturday 22:00 UTC (Sunday 8am AEST)
+# Fetches: MANGANESE in CNY/mtu
+0 22 * * 6 python3 $DATA/scripts/fetch_manganese.py --db $STOCKDB/stockdb.db >> /tmp/fetch_manganese.log 2>&1
+
+# Industrial metals from metals.dev API — weekly Sunday 22:00 UTC (Monday 8am AEST)
+# Fetches: LEAD, ALUMINIUM, ZINC, NICKEL (all in one API request)
+0 22 * * 0 python3 $DATA/scripts/fetch_metals_dev.py --db $STOCKDB/stockdb.db --api-key $METALS_DEV_API_KEY >> /tmp/fetch_metals_dev.log 2>&1
 
 # Previous business day catch-up — fills any announcements filed after the last --today run
 30 6 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py >> $ANNOUNCEMENTS/logs/prevday.log 2>&1
