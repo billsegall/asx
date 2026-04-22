@@ -20,6 +20,10 @@ File edits and writes to these paths need no confirmation:
 
 All read-only Bash commands are pre-approved: sqlite3 SELECT queries, grep, curl GET requests, log reads, ps/lsof, wc.
 
+## SQLite — always check schema first
+
+Before writing ANY sqlite3 SELECT query against a table, run `.schema <table>` first to verify column names. Never guess column names from context or memory — they change. This applies even to tables queried before in the same session.
+
 sqlite3 UPDATE/DELETE on stockdb.db or users.db is pre-approved when it's a targeted fix I've just diagnosed (not bulk deletes or DROP TABLE).
 
 `pip3 *` commands are pre-approved — run without asking.
