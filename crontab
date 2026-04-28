@@ -72,17 +72,9 @@ METALS_DEV_API_KEY=ISPELSLJBHBURV1FQYO43651FQYO4
 30 6 * * 1-5 $ANNOUNCEMENTS/fetch_and_extract.sh >> $ANNOUNCEMENTS/logs/prevday.log 2>&1
 
 # Today's ASX announcements — fetched throughout the trading day (AEST)
-1 8 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
-2 9 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
-33 9 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
-44 9 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
-59 9 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
-# Mid-morning and end-of-day runs fetch then immediately extract
-15 10 * * 1-5 $ANNOUNCEMENTS/fetch_and_extract.sh --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
-45 11 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
-45 13 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
-45 15 * * 1-5 python3 $ANNOUNCEMENTS/asx_scraper.py --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
-15 17 * * 1-5 $ANNOUNCEMENTS/fetch_and_extract.sh --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
+1 8,9,10,11,12,13,14,15,16 * * 1-5 $ANNOUNCEMENTS/fetch_and_extract.sh >> $ANNOUNCEMENTS/logs/prevday.log
+31 8,9,10,15,16 * * 1-5 $ANNOUNCEMENTS/fetch_and_extract.sh >> $ANNOUNCEMENTS/logs/prevday.log
+
 
 # Weekly cleanup of fermi_api_calls rows older than 90 days (Sunday 3am)
 0 3 * * 0 python3 -c "import sqlite3,os; from datetime import datetime,timezone,timedelta; db=os.path.join('$WEB','users.db'); c=sqlite3.connect(db); r=c.execute('DELETE FROM fermi_api_calls WHERE timestamp < ?',((datetime.now(timezone.utc)-timedelta(days=90)).strftime('%Y-%m-%dT%H:%M:%SZ'),)); c.commit(); print(f'Deleted {r.rowcount} rows'); c.close()" >> /tmp/fermi_cleanup.log 2>&1
