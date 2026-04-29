@@ -72,8 +72,8 @@ METALS_DEV_API_KEY=ISPELSLJBHBURV1FQYO43651FQYO4
 30 6 * * 1-5 $ANNOUNCEMENTS/fetch_and_extract.sh >> $ANNOUNCEMENTS/logs/prevday.log 2>&1
 
 # Today's ASX announcements — fetched throughout the trading day (AEST)
-1 8,9,10,11,12,13,14,15,16 * * 1-5 $ANNOUNCEMENTS/fetch_and_extract.sh >> $ANNOUNCEMENTS/logs/prevday.log
-31 8,9,10,15,16 * * 1-5 $ANNOUNCEMENTS/fetch_and_extract.sh >> $ANNOUNCEMENTS/logs/prevday.log
+1 8,9,10,11,12,13,14,15,16 * * 1-5 $ANNOUNCEMENTS/fetch_and_extract.sh --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
+31 8,9,10,15,16 * * 1-5 $ANNOUNCEMENTS/fetch_and_extract.sh --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
 
 
 # Weekly cleanup of fermi_api_calls rows older than 90 days (Sunday 3am)
