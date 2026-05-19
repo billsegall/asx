@@ -7,7 +7,7 @@ Australian Securities Exchange stock data platform. Four repos, two servers.
 ```
 asx/                        ← this repo (docs, crontab)
 ├── asx-data/               ← stock data pipeline + REST API (port 8082)
-├── asx-web/                ← Flask web frontend (port 5000)
+├── asx-web/                ← Flask web frontend (port 7000)
 └── asx-announcements/      ← ASX announcements scraper + FastAPI server (port 8081)
 ```
 
@@ -24,7 +24,7 @@ asx/                        ← this repo (docs, crontab)
 |---------|------|------|--------------|
 | Stock data API | 8082 | asx-data | `asx-backend.service` |
 | Announcements API | 8081 | asx-announcements | `asx-announcements.service` |
-| Web frontend | 5000 | asx-web | (started manually) |
+| Web frontend | 7000 | asx-web | `asx-web.service` |
 
 ## Quick restart
 
@@ -36,8 +36,7 @@ sudo systemctl restart asx-backend
 sudo systemctl restart asx-announcements
 
 # Web frontend
-lsof -ti:5000 | xargs kill -9 2>/dev/null; true
-cd $HOME/code/asx/asx-web && ./asx >> /tmp/asx-web.log 2>&1 &
+sudo systemctl restart asx-web
 ```
 
 ## Crontab
@@ -59,7 +58,7 @@ asx-data/stockdb/stockdb.db  ←─ fetch_shorts, fetch_eod_daily, fetch_symbols
         ↓
 asx-data/backend/api.py  (port 8082)
         ↓
-asx-web/asx.py           (port 5000, proxies to backend)
+asx-web/asx.py           (port 7000, proxies to backend)
 ```
 
 ## Database summary
@@ -71,10 +70,15 @@ asx-web/asx.py           (port 5000, proxies to backend)
 - `shorts` — daily short positions (ASIC data, 2010–present)
 - `corporate_events` — splits etc.
 - `symbol_changes` — ASX code renames (old → new)
-- `asx_options` — listed options (from rosser.com.au)
+- `asx_options` — ASX-listed warrants (IB Gateway primary, Markit fallback)
 - `commodity_meta` — 25 tracked commodities with units and source info
 - `commodity_prices` — daily/weekly commodity prices (4 sources: yfinance, Trading Economics, metals.dev, Jupiter Mines)
 
 `users.db` (asx-web only, gitignored):
 - `users`, `list_groups`, `lists`, `watchlist_items`, `portfolio_items`
 - `transactions`, `algorithms`, `recommendations`, `list_column_prefs`
+- `research_reports`, `research_folders` — broker research with AI-extracted price targets
+- `alerts`, `alert_conditions` — price and event alerts per user
+- `fermi_reports`, `fermi_api_calls` — AI-generated Fermi analysis reports
+- `dashboard_preferences` — per-user dashboard widget config
+- `user_feature_changes` — audit log for admin feature toggling
