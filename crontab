@@ -27,14 +27,10 @@ METALS_DEV_API_KEY=ISPELSLJBHBURV1FQYO43651FQYO4
 # Daily EOD from Yahoo Finance — weekdays at 5pm
 0 17 * * 1-5 python3 $STOCKDB/fetch_eod_daily.py --db $STOCKDB/stockdb.db >> $STOCKDB/logs/eod_daily.log
 
-# Capture live option prices as EOD data — weekdays at 4pm AEST (6am UTC)
-0 6 * * 2-6 python3 $DATA/scripts/fetch_options_eod.py --db $STOCKDB/stockdb.db >> /tmp/fetch_options_eod.log
+# Capture live option prices as EOD data — weekdays at 5:10pm AEST
+10 17 * * 1-5 python3 $DATA/scripts/fetch_options_eod.py --db $STOCKDB/stockdb.db >> /tmp/fetch_options_eod.log
 
-# Refresh cached option quotes at 4:30pm AEST (6:30am UTC) — weekdays
-# Pre-warms cache so users see fast page load the next morning
-30 6 * * 1-5 cd $WEB && python3 scripts/refresh_option_quotes.py >> /tmp/refresh_option_quotes.log 2>&1
-
-# And then run the algos
+# Run the algos
 30 17 * * 1-5 cd $WEB && python3 algo_runner.py >> /tmp/algo_runner.log
 
 # Weekly fundamentals from Yahoo Finance — Friday evening (after EOD + algos)
@@ -73,8 +69,11 @@ METALS_DEV_API_KEY=ISPELSLJBHBURV1FQYO43651FQYO4
 
 # Today's ASX announcements — fetched throughout the trading day (AEST)
 1 8,9,10,11,12,13,14,15,16 * * 1-5 $ANNOUNCEMENTS/fetch_and_extract.sh --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
-31 8,9,10,15,16 * * 1-5 $ANNOUNCEMENTS/fetch_and_extract.sh --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
+31 7,8,9,10,15,16 * * 1-5 $ANNOUNCEMENTS/fetch_and_extract.sh --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
 
+
+# Monthly registrar mapping refresh — 1st of each month at 22:10 UTC (8:10am AEST)
+10 22 1 * * python3 $ANNOUNCEMENTS/fetch_registrars.py --db $ANNOUNCEMENTS/announcements.db >> /tmp/fetch_registrars.log 2>&1
 
 # Weekly cleanup of fermi_api_calls rows older than 90 days (Sunday 3am)
-0 3 * * 0 python3 -c "import sqlite3,os; from datetime import datetime,timezone,timedelta; db=os.path.join('$WEB','users.db'); c=sqlite3.connect(db); r=c.execute('DELETE FROM fermi_api_calls WHERE timestamp < ?',((datetime.now(timezone.utc)-timedelta(days=90)).strftime('%Y-%m-%dT%H:%M:%SZ'),)); c.commit(); print(f'Deleted {r.rowcount} rows'); c.close()" >> /tmp/fermi_cleanup.log 2>&1
+#0 3 * * 0 python3 -c "import sqlite3,os; from datetime import datetime,timezone,timedelta; db=os.path.join('$WEB','users.db'); c=sqlite3.connect(db); r=c.execute('DELETE FROM fermi_api_calls WHERE timestamp < ?',((datetime.now(timezone.utc)-timedelta(days=90)).strftime('%Y-%m-%dT%H:%M:%SZ'),)); c.commit(); print(f'Deleted {r.rowcount} rows'); c.close()" >> /tmp/fermi_cleanup.log 2>&1
