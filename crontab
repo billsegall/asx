@@ -75,5 +75,8 @@ METALS_DEV_API_KEY=ISPELSLJBHBURV1FQYO43651FQYO4
 # Monthly registrar mapping refresh — 1st of each month at 22:10 UTC (8:10am AEST)
 10 22 1 * * python3 $ANNOUNCEMENTS/fetch_registrars.py --db $ANNOUNCEMENTS/announcements.db >> /tmp/fetch_registrars.log 2>&1
 
+# Daily crypto prices (7 days/week) — 21:30 UTC (7:30am AEST next day)
+30 21 * * * python3 $DATA/scripts/fetch_crypto.py --db $STOCKDB/stockdb.db >> /tmp/fetch_crypto.log
+
 # Weekly cleanup of fermi_api_calls rows older than 90 days (Sunday 3am)
 #0 3 * * 0 python3 -c "import sqlite3,os; from datetime import datetime,timezone,timedelta; db=os.path.join('$WEB','users.db'); c=sqlite3.connect(db); r=c.execute('DELETE FROM fermi_api_calls WHERE timestamp < ?',((datetime.now(timezone.utc)-timedelta(days=90)).strftime('%Y-%m-%dT%H:%M:%SZ'),)); c.commit(); print(f'Deleted {r.rowcount} rows'); c.close()" >> /tmp/fermi_cleanup.log 2>&1
