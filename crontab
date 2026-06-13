@@ -9,11 +9,11 @@ ANNOUNCEMENTS=/home/bill/code/asx/asx-announcements
 WEB=/home/bill/code/asx/asx-web
 METALS_DEV_API_KEY=ISPELSLJBHBURV1FQYO43651FQYO4
 
-# First day of each month at 08:00 — symbols
-0 8 1 * * { [ "$(date +\%d)" = "01" ] || [ "$(date +\%u)" = "1" ]; } && make -C $STOCKDB fetch_symbols >> /tmp/fetch_symbols.log
+# Daily symbol refresh from ASX official CSV — picks up new listings within 1 day
+0 8 * * 1-5 make -C $STOCKDB fetch_symbols >> /tmp/fetch_symbols.log
 
-# And then get the list of name changes
-15 8 1 * * python3 $DATA/scripts/fetch_symbol_changes.py --db $STOCKDB/stockdb.db >> /tmp/symbol-changes.log
+# Weekly symbol name changes (renames) — Friday morning
+15 8 * * 5 python3 $DATA/scripts/fetch_symbol_changes.py --db $STOCKDB/stockdb.db >> /tmp/symbol-changes.log
 
 # Every trading day at 08:00 — short positions
 0 8 * * 1-5 make -C $STOCKDB fetch_shorts >> /tmp/fetch_shorts.log
