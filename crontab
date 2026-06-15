@@ -33,8 +33,8 @@ METALS_DEV_API_KEY=ISPELSLJBHBURV1FQYO43651FQYO4
 # Run the algos
 30 17 * * 1-5 cd $WEB && python3 algo_runner.py >> /tmp/algo_runner.log
 
-# Kronos predictions + backtest — weekdays 8pm AEST, after EOD + algos
-0 20 * * 1-5 $DATA/analysis/trigger_kronos.sh >> $DATA/analysis/logs/kronos_trigger.log 2>&1
+# Kronos predictions + backtest — weekdays 5:30pm UTC, after EOD + algos
+30 17 * * 1-5 $DATA/analysis/trigger_kronos.sh >> $DATA/analysis/logs/kronos_trigger.log 2>&1
 
 # Weekly fundamentals from Yahoo Finance — Friday evening (after EOD + algos)
 30 18 * * 5 python3 $DATA/scripts/fetch_fundamentals.py --db $STOCKDB/stockdb.db >> /tmp/fetch_fundamentals.log
