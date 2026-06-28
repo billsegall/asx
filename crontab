@@ -10,76 +10,76 @@ WEB=/home/bill/code/asx/asx-web
 METALS_DEV_API_KEY=ISPELSLJBHBURV1FQYO43651FQYO4
 
 # Daily symbol refresh from ASX official CSV — picks up new listings within 1 day
-0 8 * * 1-5 make -C $STOCKDB fetch_symbols >> /tmp/fetch_symbols.log
+0 8 * * 1-5 make -C $STOCKDB fetch_symbols >> /tmp/fetch_symbols.log 2> >(tee -a /tmp/fetch_symbols.log >&2)
 
 # Weekly symbol name changes (renames) — Friday morning
-15 8 * * 5 python3 $DATA/scripts/fetch_symbol_changes.py --db $STOCKDB/stockdb.db >> /tmp/symbol-changes.log
+15 8 * * 5 python3 $DATA/scripts/fetch_symbol_changes.py --db $STOCKDB/stockdb.db >> /tmp/symbol-changes.log 2> >(tee -a /tmp/symbol-changes.log >&2)
 
 # Every trading day at 08:00 — short positions
-0 8 * * 1-5 make -C $STOCKDB fetch_shorts >> /tmp/fetch_shorts.log
+0 8 * * 1-5 make -C $STOCKDB fetch_shorts >> /tmp/fetch_shorts.log 2> >(tee -a /tmp/fetch_shorts.log >&2)
 
 # Every week at 08:15 — splits
-0 8 * * 1-5 /bin/python3 $STOCKDB/fetch_splits.py --db $STOCKDB/stockdb.db >> /tmp/fetch_splits.log
+0 8 * * 1-5 /bin/python3 $STOCKDB/fetch_splits.py --db $STOCKDB/stockdb.db >> /tmp/fetch_splits.log 2> >(tee -a /tmp/fetch_splits.log >&2)
 
 # Weekly warrant metadata refresh from IB Gateway (Sunday 6am AEST = Saturday 20:00 UTC)
 0 20 * * 6 python3 $DATA/scripts/fetch_options_ib.py --db $STOCKDB/stockdb.db >> /tmp/fetch_options_ib.log 2> >(tee -a /tmp/fetch_options_ib.log >&2)
 
 # Daily EOD from Yahoo Finance — weekdays at 5pm
-0 17 * * 1-5 python3 $STOCKDB/fetch_eod_daily.py --db $STOCKDB/stockdb.db >> $STOCKDB/logs/eod_daily.log
+0 17 * * 1-5 python3 $STOCKDB/fetch_eod_daily.py --db $STOCKDB/stockdb.db >> $STOCKDB/logs/eod_daily.log 2> >(tee -a $STOCKDB/logs/eod_daily.log >&2)
 
 # Capture live option prices as EOD data — weekdays at 5:10pm AEST
-10 17 * * 1-5 python3 $DATA/scripts/fetch_options_eod.py --db $STOCKDB/stockdb.db >> /tmp/fetch_options_eod.log
+10 17 * * 1-5 python3 $DATA/scripts/fetch_options_eod.py --db $STOCKDB/stockdb.db >> /tmp/fetch_options_eod.log 2> >(tee -a /tmp/fetch_options_eod.log >&2)
 
 # Run the algos
-30 17 * * 1-5 cd $WEB && python3 algo_runner.py >> /tmp/algo_runner.log
+30 17 * * 1-5 cd $WEB && python3 algo_runner.py >> /tmp/algo_runner.log 2> >(tee -a /tmp/algo_runner.log >&2)
 
 # Kronos predictions + backtest — weekdays 5:45pm UTC, after EOD + algos
-45 17 * * 1-5 $DATA/analysis/trigger_kronos.sh >> $DATA/analysis/logs/kronos_trigger.log 2>&1
+45 17 * * 1-5 $DATA/analysis/trigger_kronos.sh >> $DATA/analysis/logs/kronos_trigger.log 2> >(tee -a $DATA/analysis/logs/kronos_trigger.log >&2)
 
 # Weekly fundamentals from Yahoo Finance — Friday evening (after EOD + algos)
-30 18 * * 5 python3 $DATA/scripts/fetch_fundamentals.py --db $STOCKDB/stockdb.db >> /tmp/fetch_fundamentals.log
+30 18 * * 5 python3 $DATA/scripts/fetch_fundamentals.py --db $STOCKDB/stockdb.db >> /tmp/fetch_fundamentals.log 2> >(tee -a /tmp/fetch_fundamentals.log >&2)
 
 # Weekly events fetch — Friday after fundamentals
-0 19 * * 5 python3 $DATA/scripts/fetch_events.py --db $STOCKDB/stockdb.db >> /tmp/fetch_events.log 2>&1
+0 19 * * 5 python3 $DATA/scripts/fetch_events.py --db $STOCKDB/stockdb.db >> /tmp/fetch_events.log 2> >(tee -a /tmp/fetch_events.log >&2)
 
 # Monthly annual financial statements (income/balance/cashflow) — Saturday after weekly fundamentals
-0 21 * * 6 python3 $DATA/scripts/fetch_financials.py --db $STOCKDB/stockdb.db >> /tmp/fetch_financials.log
+0 21 * * 6 python3 $DATA/scripts/fetch_financials.py --db $STOCKDB/stockdb.db >> /tmp/fetch_financials.log 2> >(tee -a /tmp/fetch_financials.log >&2)
 
 # Monthly shares-on-issue history — Saturday after financials
-30 21 * * 6 python3 $DATA/scripts/fetch_shares.py --db $STOCKDB/stockdb.db >> /tmp/fetch_shares.log
+30 21 * * 6 python3 $DATA/scripts/fetch_shares.py --db $STOCKDB/stockdb.db >> /tmp/fetch_shares.log 2> >(tee -a /tmp/fetch_shares.log >&2)
 
 # Monthly dividends from Yahoo Finance — 1st of each month at 19:00 UTC
-0 19 1 * * python3 $DATA/scripts/fetch_dividends.py --db $STOCKDB/stockdb.db >> /tmp/fetch_dividends.log
+0 19 1 * * python3 $DATA/scripts/fetch_dividends.py --db $STOCKDB/stockdb.db >> /tmp/fetch_dividends.log 2> >(tee -a /tmp/fetch_dividends.log >&2)
 
 # Daily commodity prices (yfinance) — weekdays 21:00 UTC (7am AEST next day)
 # Switch to --source te and add TE_API_KEY=... when a Trading Economics key is available
-0 21 * * 1-5 python3 $DATA/scripts/fetch_commodities.py --db $STOCKDB/stockdb.db --source yf >> /tmp/fetch_commodities.log
+0 21 * * 1-5 python3 $DATA/scripts/fetch_commodities.py --db $STOCKDB/stockdb.db --source yf >> /tmp/fetch_commodities.log 2> >(tee -a /tmp/fetch_commodities.log >&2)
 
 # Trading Economics commodities — weekly Wednesday 22:00 UTC (Thursday 8am AEST)
 # Fetches: THERMAL-COAL, ALUMINIUM, ZINC, NICKEL, LEAD, IRON-ORE, NATURAL-GAS
-0 22 * * 3 python3 $DATA/scripts/fetch_trading_economics.py --db $STOCKDB/stockdb.db --all >> /tmp/fetch_trading_economics.log 2>&1
+0 22 * * 3 python3 $DATA/scripts/fetch_trading_economics.py --db $STOCKDB/stockdb.db --all >> /tmp/fetch_trading_economics.log 2> >(tee -a /tmp/fetch_trading_economics.log >&2)
 
 # Manganese price from Jupiter Mines/Shanghai Metals Market — weekly Saturday 22:00 UTC (Sunday 8am AEST)
 # Fetches: MANGANESE in CNY/mtu
-0 22 * * 6 python3 $DATA/scripts/fetch_manganese.py --db $STOCKDB/stockdb.db >> /tmp/fetch_manganese.log 2>&1
+0 22 * * 6 python3 $DATA/scripts/fetch_manganese.py --db $STOCKDB/stockdb.db >> /tmp/fetch_manganese.log 2> >(tee -a /tmp/fetch_manganese.log >&2)
 
 # Industrial metals from metals.dev API — weekly Sunday 22:00 UTC (Monday 8am AEST)
 # Fetches: LEAD, ALUMINIUM, ZINC, NICKEL (all in one API request)
-0 22 * * 0 python3 $DATA/scripts/fetch_metals_dev.py --db $STOCKDB/stockdb.db --api-key $METALS_DEV_API_KEY >> /tmp/fetch_metals_dev.log 2>&1
+0 22 * * 0 python3 $DATA/scripts/fetch_metals_dev.py --db $STOCKDB/stockdb.db --api-key $METALS_DEV_API_KEY >> /tmp/fetch_metals_dev.log 2> >(tee -a /tmp/fetch_metals_dev.log >&2)
 
 # Previous business day catch-up — fills any announcements filed after the last --today run, then extracts
-30 6 * * 1-5 $ANNOUNCEMENTS/fetch_and_extract.sh >> $ANNOUNCEMENTS/logs/prevday.log 2>&1
+30 6 * * 1-5 $ANNOUNCEMENTS/fetch_and_extract.sh >> $ANNOUNCEMENTS/logs/prevday.log 2> >(tee -a $ANNOUNCEMENTS/logs/prevday.log >&2)
 
 # Today's ASX announcements — fetched throughout the trading day (AEST)
-1 8,9,10,11,12,13,14,15,16 * * 1-5 $ANNOUNCEMENTS/fetch_and_extract.sh --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
-31 7,8,9,10,15,16 * * 1-5 $ANNOUNCEMENTS/fetch_and_extract.sh --today >> $ANNOUNCEMENTS/logs/today.log 2>&1
+1 8,9,10,11,12,13,14,15,16 * * 1-5 $ANNOUNCEMENTS/fetch_and_extract.sh --today >> $ANNOUNCEMENTS/logs/today.log 2> >(tee -a $ANNOUNCEMENTS/logs/today.log >&2)
+31 7,8,9,10,15,16 * * 1-5 $ANNOUNCEMENTS/fetch_and_extract.sh --today >> $ANNOUNCEMENTS/logs/today.log 2> >(tee -a $ANNOUNCEMENTS/logs/today.log >&2)
 
 
 # Monthly registrar mapping refresh — 1st of each month at 22:10 UTC (8:10am AEST)
-10 22 1 * * python3 $ANNOUNCEMENTS/fetch_registrars.py --db $ANNOUNCEMENTS/announcements.db >> /tmp/fetch_registrars.log 2>&1
+10 22 1 * * python3 $ANNOUNCEMENTS/fetch_registrars.py --db $ANNOUNCEMENTS/announcements.db >> /tmp/fetch_registrars.log 2> >(tee -a /tmp/fetch_registrars.log >&2)
 
 # Daily crypto prices (7 days/week) — 21:30 UTC (7:30am AEST next day)
-30 21 * * * python3 $DATA/scripts/fetch_crypto.py --db $STOCKDB/stockdb.db >> /tmp/fetch_crypto.log
+30 21 * * * python3 $DATA/scripts/fetch_crypto.py --db $STOCKDB/stockdb.db >> /tmp/fetch_crypto.log 2> >(tee -a /tmp/fetch_crypto.log >&2)
 
 # Weekly cleanup of fermi_api_calls rows older than 90 days (Sunday 3am)
-#0 3 * * 0 python3 -c "import sqlite3,os; from datetime import datetime,timezone,timedelta; db=os.path.join('$WEB','users.db'); c=sqlite3.connect(db); r=c.execute('DELETE FROM fermi_api_calls WHERE timestamp < ?',((datetime.now(timezone.utc)-timedelta(days=90)).strftime('%Y-%m-%dT%H:%M:%SZ'),)); c.commit(); print(f'Deleted {r.rowcount} rows'); c.close()" >> /tmp/fermi_cleanup.log 2>&1
+#0 3 * * 0 python3 -c "import sqlite3,os; from datetime import datetime,timezone,timedelta; db=os.path.join('$WEB','users.db'); c=sqlite3.connect(db); r=c.execute('DELETE FROM fermi_api_calls WHERE timestamp < ?',((datetime.now(timezone.utc)-timedelta(days=90)).strftime('%Y-%m-%dT%H:%M:%SZ'),)); c.commit(); print(f'Deleted {r.rowcount} rows'); c.close()" >> /tmp/fermi_cleanup.log 2> >(tee -a /tmp/fermi_cleanup.log >&2)
