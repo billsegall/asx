@@ -6,3 +6,6 @@ oz-sheets/
 .claude/
 plan
 *.db
+nohup.out
+bugs
+features
