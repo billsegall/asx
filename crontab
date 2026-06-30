@@ -81,5 +81,8 @@ METALS_DEV_API_KEY=ISPELSLJBHBURV1FQYO43651FQYO4
 # Daily crypto prices (7 days/week) — 21:30 UTC (7:30am AEST next day)
 30 21 * * * python3 $DATA/scripts/fetch_crypto.py --db $STOCKDB/stockdb.db >> /tmp/fetch_crypto.log 2> >(tee -a /tmp/fetch_crypto.log >&2)
 
+# Daily FX rates (7 days/week) — 21:35 UTC (5 min after crypto)
+35 21 * * * python3 $DATA/scripts/fetch_currencies.py --db $STOCKDB/stockdb.db >> /tmp/fetch_currencies.log 2> >(tee -a /tmp/fetch_currencies.log >&2)
+
 # Weekly cleanup of fermi_api_calls rows older than 90 days (Sunday 3am)
 #0 3 * * 0 python3 -c "import sqlite3,os; from datetime import datetime,timezone,timedelta; db=os.path.join('$WEB','users.db'); c=sqlite3.connect(db); r=c.execute('DELETE FROM fermi_api_calls WHERE timestamp < ?',((datetime.now(timezone.utc)-timedelta(days=90)).strftime('%Y-%m-%dT%H:%M:%SZ'),)); c.commit(); print(f'Deleted {r.rowcount} rows'); c.close()" >> /tmp/fermi_cleanup.log 2> >(tee -a /tmp/fermi_cleanup.log >&2)
