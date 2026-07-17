@@ -80,6 +80,7 @@ Canonical crontab: `asx/crontab`. Install: `crontab $HOME/code/asx/crontab`
 - `asx-data` has no user auth — serves stock market data only
 - Market data (symbol_changes, asx_options) lives in stockdb.db, not users.db
 - `asx-web/algo_runner.py` is a legitimate exception: it needs both stockdb.db (via API) and users.db
+- Multi-exchange prep (2026-07): both repos have a small `exchanges.py` registry module (separate per-repo copies, not shared) for exchange-specific literals (`.AX` suffix, IB `exchange`/`currency` args, holiday calendars). Every per-symbol DB table has an additive `exchange TEXT NOT NULL DEFAULT 'ASX'` column. Only `'ASX'` is registered — this is groundwork, not a second exchange. See `asx-data/Database.md` → "Multi-exchange preparation".
 
 ## Deployment
 
