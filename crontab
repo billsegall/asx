@@ -21,6 +21,11 @@ METALS_DEV_API_KEY=ISPELSLJBHBURV1FQYO43651FQYO4
 # Every week at 08:15 — splits
 0 8 * * 1-5 /bin/python3 $STOCKDB/fetch_splits.py --db $STOCKDB/stockdb.db >> /tmp/fetch_splits.log 2> >(tee -a /tmp/fetch_splits.log >&2)
 
+# Apply consolidations/splits/renames to portfolio holdings — weekdays 08:30 UTC,
+# after fetch_splits (08:00 daily) and fetch_symbol_changes (08:15 Fridays) so
+# same-day upstream corporate_events/symbol_changes rows are already in stockdb.db
+30 8 * * 1-5 python3 $WEB/scripts/apply_corporate_actions.py >> /tmp/apply_corporate_actions.log 2> >(tee -a /tmp/apply_corporate_actions.log >&2)
+
 # Weekly warrant metadata refresh from IB Gateway (Sunday 6am AEST = Saturday 20:00 UTC)
 0 20 * * 6 python3 $DATA/scripts/fetch_options_ib.py --db $STOCKDB/stockdb.db >> /tmp/fetch_options_ib.log 2> >(tee -a /tmp/fetch_options_ib.log >&2)
 
