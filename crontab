@@ -12,8 +12,15 @@ METALS_DEV_API_KEY=ISPELSLJBHBURV1FQYO43651FQYO4
 # Daily symbol refresh from ASX official CSV — picks up new listings within 1 day
 0 8 * * 1-5 make -C $STOCKDB fetch_symbols >> /tmp/fetch_symbols.log 2> >(tee -a /tmp/fetch_symbols.log >&2)
 
-# Weekly symbol name changes (renames) — Friday morning
+# Weekly symbol name changes (renames) — Friday morning. Also migrates
+# stockdb.db's own market-data history (endofday, dividends, fundamentals,
+# etc.) from old_symbol to new_symbol for each newly-effective rename.
 15 8 * * 5 python3 $DATA/scripts/fetch_symbol_changes.py --db $STOCKDB/stockdb.db >> /tmp/symbol-changes.log 2> >(tee -a /tmp/symbol-changes.log >&2)
+
+# Migrate announcements.db's own history (announcements, extracted_*,
+# registrar_map) for the same renames — after the above so symbol_changes is
+# already up to date. Reads stockdb.db read-only; see migrate_symbol_history.py.
+25 8 * * 5 python3 $ANNOUNCEMENTS/migrate_symbol_history.py --db $ANNOUNCEMENTS/announcements.db >> /tmp/migrate-symbol-history.log 2> >(tee -a /tmp/migrate-symbol-history.log >&2)
 
 # Every trading day at 08:00 — short positions
 0 8 * * 1-5 make -C $STOCKDB fetch_shorts >> /tmp/fetch_shorts.log 2> >(tee -a /tmp/fetch_shorts.log >&2)
