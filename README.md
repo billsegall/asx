@@ -14,16 +14,18 @@ Australian Securities Exchange stock data platform. Four core repos plus an opti
 
 | Machine | Role |
 |---------|------|
-| server | Primary server; runs all three services |
+| server | Primary server; runs all core services + optional IB Gateway |
 | realiti-wsl (local WSL2) | GPU analysis only (RTX 4070); runs `asx-data/analysis/sync.sh` |
 
 ## Services
 
-| Service | Port | Repo | Systemd unit |
+| Service | Port | Repo | Managed by |
 |---------|------|------|--------------|
 | Stock data API | 8082 | asx-data | `asx-backend.service` |
 | Announcements API | 8081 | asx-announcements | `asx-announcements.service` |
 | Web frontend | 7000 | asx-web | `asx-web.service` |
+| IB Gateway (live) | 4001 | asx-ib | Docker Compose *(optional)* |
+| IB Gateway (paper) | 4002 | asx-ib | Docker Compose *(optional)* |
 
 ## Quick restart
 
@@ -36,6 +38,10 @@ sudo systemctl restart asx-announcements
 
 # Web frontend
 sudo systemctl restart asx-web
+
+# IB Gateway (optional — Docker, not systemd)
+cd asx-ib && docker compose restart ib-gateway         # live
+cd asx-ib && docker compose restart ib-gateway-paper   # paper trading
 ```
 
 ## Crontab
@@ -62,18 +68,25 @@ asx-web/asx.py           (port 7000, proxies to backend)
 
 ## Database summary
 
-`stockdb/stockdb.db` (primary, ~1GB):
-- `symbols` — listed companies (name, industry, shares outstanding)
-- `endofday` — daily OHLCV prices
-- `endofmonth` — monthly closes
+`stockdb/stockdb.db` (primary, ~1GB) — market data, no user auth:
+- `symbols` — listed companies (name, industry, shares outstanding, `current` flag)
+- `endofday`, `endofmonth` — daily OHLCV / monthly closes
 - `shorts` — daily short positions (ASIC data, 2010–present)
-- `corporate_events` — splits etc.
-- `symbol_changes` — ASX code renames (old → new)
+- `dividends` — dividend history (Yahoo Finance)
+- `fundamentals`, `financials_annual` — valuation/margin snapshots and annual statements (Yahoo Finance)
+- `shares_history` — shares-on-issue over time
+- `events` — earnings/ex-dividend/etc. dates (Yahoo Finance)
+- `corporate_events` — splits/consolidations
+- `symbol_changes` — ASX code renames (old → new), with the company's new name
+- `symbol_history_migrations` — audit ledger for moving a renamed symbol's market-data history (endofday, dividends, fundamentals, etc.) from its old code to its new one
 - `asx_options` — ASX-listed warrants (IB Gateway primary, Markit fallback)
-- `commodity_meta` — 25 tracked commodities with units and source info
-- `commodity_prices` — daily/weekly commodity prices (4 sources: yfinance, Trading Economics, metals.dev, Jupiter Mines)
+- `kronos_predictions` — daily ML price-direction predictions
+- `eod_fetch_failures` — tracks symbols with consecutive missed EOD fetches
+- `commodity_meta`, `commodity_prices` — 25 tracked commodities, 4 sources (yfinance, Trading Economics, metals.dev, Jupiter Mines)
+- `crypto_meta`, `crypto_prices` — top-100 cryptocurrencies (CoinGecko + yfinance)
+- `currency_meta`, `currency_prices` — FX rates
 
-`users.db` (asx-web only, gitignored):
+`users.db` (asx-web only, gitignored) — auth, watchlists/portfolios, no market data:
 - `users`, `list_groups`, `lists`, `watchlist_items`, `portfolio_items`
 - `transactions`, `algorithms`, `recommendations`, `list_column_prefs`
 - `research_reports`, `research_folders` — broker research with AI-extracted price targets
@@ -81,3 +94,8 @@ asx-web/asx.py           (port 7000, proxies to backend)
 - `fermi_reports`, `fermi_api_calls` — AI-generated Fermi analysis reports
 - `dashboard_preferences` — per-user dashboard widget config
 - `user_feature_changes` — audit log for admin feature toggling
+- `portfolio_notices` — dismissible per-user notices (e.g. "your holding was consolidated/renamed")
+- `processed_corporate_actions` — ledger of consolidations/splits/renames already applied to holdings
+- `option_quotes_cache`, `warrant_notes` — cached warrant pricing + per-user notes
+- `ib_trade_log` — audit trail of orders placed via the IB trading integration
+- `symbol_changes` — **orphaned**: 581 rows, no code references it anymore. Leftover from before symbol-change tracking moved to `stockdb.db` (see `asx-data/CLAUDE.md`); not part of the current architecture, left in place rather than dropped without confirmation.
