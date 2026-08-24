@@ -1,15 +1,14 @@
 # ASX Project
 
-Australian Securities Exchange stock data platform. Four repos, two servers.
+Australian Securities Exchange stock data platform. Four core repos plus an optional Interactive Brokers gateway, two servers.
 
 ## Architecture
 
-```
-asx/                        ← this repo (docs, crontab)
-├── asx-data/               ← stock data pipeline + REST API (port 8082)
-├── asx-web/                ← Flask web frontend (port 7000)
-└── asx-announcements/      ← ASX announcements scraper + FastAPI server (port 8081)
-```
+- [asx](https://github.com/billsegall/asx) — this repo (docs, crontab)
+  - [asx-data](https://github.com/billsegall/asx-data) — stock data pipeline + REST API (port 8082)
+  - [asx-web](https://github.com/billsegall/asx-web) — Flask web frontend (port 7000)
+  - [asx-announcements](https://github.com/billsegall/asx-announcements) — ASX announcements scraper + FastAPI server (port 8081)
+  - [asx-ib](https://github.com/billsegall/asx-ib) — Interactive Brokers gateway for live/EOD market data *(optional — core platform works without it, falling back to Yahoo Finance)*
 
 ## Machines
 
