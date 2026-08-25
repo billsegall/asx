@@ -105,3 +105,10 @@ METALS_DEV_API_KEY=ISPELSLJBHBURV1FQYO43651FQYO4
 
 # Weekly cleanup of fermi_api_calls rows older than 90 days (Sunday 3am)
 #0 3 * * 0 python3 -c "import sqlite3,os; from datetime import datetime,timezone,timedelta; db=os.path.join('$WEB','users.db'); c=sqlite3.connect(db); r=c.execute('DELETE FROM fermi_api_calls WHERE timestamp < ?',((datetime.now(timezone.utc)-timedelta(days=90)).strftime('%Y-%m-%dT%H:%M:%SZ'),)); c.commit(); print(f'Deleted {r.rowcount} rows'); c.close()" >> /tmp/fermi_cleanup.log 2> >(tee -a /tmp/fermi_cleanup.log >&2)
+
+# Nightly test-suite health check — 15:00 UTC = 1am AEST (Brisbane, no DST) daily.
+# Headless Claude Code run (see nightly_test_check.sh — inline prompt hit
+# cron's line-length limit): runs each repo's own pytest suite, reports
+# failures via push notification + a project memory note, takes no other
+# action (no edits/fixes/commits/pushes).
+0 15 * * * /home/bill/code/asx/nightly_test_check.sh >> /tmp/nightly_tests.log 2> >(tee -a /tmp/nightly_tests.log >&2)
