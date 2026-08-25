@@ -9,8 +9,10 @@ ANNOUNCEMENTS=/home/bill/code/asx/asx-announcements
 WEB=/home/bill/code/asx/asx-web
 METALS_DEV_API_KEY=ISPELSLJBHBURV1FQYO43651FQYO4
 
-# Daily symbol refresh from ASX official CSV — picks up new listings within 1 day
-0 8 * * 1-5 make -C $STOCKDB fetch_symbols >> /tmp/fetch_symbols.log 2> >(tee -a /tmp/fetch_symbols.log >&2)
+# Daily symbol refresh from ASX official CSV — picks up new listings within 1 day.
+# Offset 2 min after fetch_shorts (both below, same 08:00 weekday slot) — was
+# colliding on stockdb.db ("database is locked").
+2 8 * * 1-5 make -C $STOCKDB fetch_symbols >> /tmp/fetch_symbols.log 2> >(tee -a /tmp/fetch_symbols.log >&2)
 
 # Weekly symbol name changes (renames) — Friday morning. Also migrates
 # stockdb.db's own market-data history (endofday, dividends, fundamentals,
@@ -25,11 +27,12 @@ METALS_DEV_API_KEY=ISPELSLJBHBURV1FQYO43651FQYO4
 # Every trading day at 08:00 — short positions
 0 8 * * 1-5 make -C $STOCKDB fetch_shorts >> /tmp/fetch_shorts.log 2> >(tee -a /tmp/fetch_shorts.log >&2)
 
-# Every week at 08:15 — splits
-0 8 * * 1-5 /bin/python3 $STOCKDB/fetch_splits.py --db $STOCKDB/stockdb.db >> /tmp/fetch_splits.log 2> >(tee -a /tmp/fetch_splits.log >&2)
+# Every weekday at 08:04 — splits. Offset from fetch_shorts/fetch_symbols
+# above (same 08:00 slot) to avoid the same lock contention.
+4 8 * * 1-5 /bin/python3 $STOCKDB/fetch_splits.py --db $STOCKDB/stockdb.db >> /tmp/fetch_splits.log 2> >(tee -a /tmp/fetch_splits.log >&2)
 
 # Apply consolidations/splits/renames to portfolio holdings — weekdays 08:30 UTC,
-# after fetch_splits (08:00 daily) and fetch_symbol_changes (08:15 Fridays) so
+# after fetch_splits (08:04 daily) and fetch_symbol_changes (08:15 Fridays) so
 # same-day upstream corporate_events/symbol_changes rows are already in stockdb.db
 30 8 * * 1-5 python3 $WEB/scripts/apply_corporate_actions.py >> /tmp/apply_corporate_actions.log 2> >(tee -a /tmp/apply_corporate_actions.log >&2)
 
