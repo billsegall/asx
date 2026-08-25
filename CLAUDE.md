@@ -37,7 +37,7 @@ Never ask permission because a Bash command contains newlines.
 
 **Before deleting or recreating ANY database file (.db), MUST:**
 
-1. Create a dated backup: `cp <db_file> <db_file>.backup.$(date +%Y%m%d_%H%M%S)`
+1. Create a dated backup: `sqlite3 <db_file> ".backup <db_file>.backup.$(date +%Y%m%d_%H%M%S)"` — NOT plain `cp`. These DBs run in WAL mode; a plain-`cp` snapshot can silently miss recently-committed data sitting in the `-wal` file (confirmed live 2026-08-26: a `cp` backup taken moments after a schema change came back missing that change entirely, despite `PRAGMA integrity_check` passing). `.backup` is WAL-safe.
 2. **STOP AND NOTIFY** the user with:
    - What database will be deleted
    - Why (e.g., "recreating schema", "testing", "corrupted data")
