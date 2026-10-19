@@ -3,10 +3,10 @@ asx-ib/
 asx-web/
 asx-announcements/
 oz-sheets/
-.claude/
 plan
+.claude/
 *.db
-nohup.out
-bugs
-features
-DataNeeded
+#nohup.out
+#bugs
+#features
+#DataNeeded
