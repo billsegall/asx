@@ -63,6 +63,9 @@ METALS_DEV_API_KEY=ISPELSLJBHBURV1FQYO43651FQYO4
 # lost to "database is locked").
 0 20 * * 6 python3 $DATA/scripts/fetch_financials.py --db $STOCKDB/stockdb.db >> /tmp/fetch_financials.log 2> >(tee -a /tmp/fetch_financials.log >&2)
 
+# Weekly shares on issue from ASX (drives market cap) — Sunday 09:00, nothing else runs then
+0 9 * * 0 python3 $DATA/scripts/fetch_asx_shares.py --db $STOCKDB/stockdb.db >> /tmp/fetch_asx_shares.log 2> >(tee -a /tmp/fetch_asx_shares.log >&2)
+
 # Monthly shares-on-issue history — Saturday after financials, offset from the
 # daily crypto/FX jobs below (both hit stockdb.db at 21:30-21:35) to avoid lock contention
 50 21 * * 6 python3 $DATA/scripts/fetch_shares.py --db $STOCKDB/stockdb.db >> /tmp/fetch_shares.log 2> >(tee -a /tmp/fetch_shares.log >&2)
