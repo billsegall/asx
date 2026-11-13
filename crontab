@@ -48,6 +48,9 @@ METALS_DEV_API_KEY=ISPELSLJBHBURV1FQYO43651FQYO4
 # Run the algos
 30 17 * * 1-5 cd $WEB && venv/bin/python3 algo_runner.py >> /tmp/algo_runner.log 2> >(tee -a /tmp/algo_runner.log >&2)
 
+# Check alerts against live prices and send notifications (Signal) — every 5 min, weekdays 10:00-16:55 AEST
+*/5 10-16 * * 1-5 $WEB/venv/bin/python3 $WEB/scripts/check_alerts.py >> /tmp/check_alerts.log 2> >(tee -a /tmp/check_alerts.log >&2)
+
 # Kronos predictions + backtest — weekdays 5:45pm UTC, after EOD + algos
 45 17 * * 1-5 $DATA/analysis/trigger_kronos.sh >> $DATA/analysis/logs/kronos_trigger.log 2> >(tee -a $DATA/analysis/logs/kronos_trigger.log >&2)
 
