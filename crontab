@@ -48,8 +48,12 @@ METALS_DEV_API_KEY=ISPELSLJBHBURV1FQYO43651FQYO4
 # Run the algos
 30 17 * * 1-5 cd $WEB && venv/bin/python3 algo_runner.py >> /tmp/algo_runner.log 2> >(tee -a /tmp/algo_runner.log >&2)
 
-# Check alerts against live prices and send notifications (Signal) — every 5 min, weekdays 10:00-16:55 AEST
-*/5 10-16 * * 1-5 $WEB/venv/bin/python3 $WEB/scripts/check_alerts.py >> /tmp/check_alerts.log 2> >(tee -a /tmp/check_alerts.log >&2)
+# Check alerts and send notifications (Signal). Times are Brisbane (no DST), so Sydney's
+# 10:00 open is 09:00 here in summer.
+# Price targets / % moves: every 5 min, weekdays 09:00-16:55
+*/5 9-16 * * 1-5 $WEB/venv/bin/python3 $WEB/scripts/check_alerts.py --prices >> /tmp/check_alerts.log 2> >(tee -a /tmp/check_alerts.log >&2)
+# New announcements for watched stocks: every 5 min, weekdays 06:00-18:55 (covers the 06:30 catch-up fetch)
+*/5 6-18 * * 1-5 $WEB/venv/bin/python3 $WEB/scripts/check_alerts.py --announcements >> /tmp/check_alerts.log 2> >(tee -a /tmp/check_alerts.log >&2)
 
 # Kronos predictions + backtest — weekdays 5:45pm UTC, after EOD + algos
 45 17 * * 1-5 $DATA/analysis/trigger_kronos.sh >> $DATA/analysis/logs/kronos_trigger.log 2> >(tee -a $DATA/analysis/logs/kronos_trigger.log >&2)
