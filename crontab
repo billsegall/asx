@@ -54,6 +54,9 @@ METALS_DEV_API_KEY=ISPELSLJBHBURV1FQYO43651FQYO4
 */5 9-16 * * 1-5 $WEB/venv/bin/python3 $WEB/scripts/check_alerts.py --prices >> /tmp/check_alerts.log 2> >(tee -a /tmp/check_alerts.log >&2)
 # New announcements for watched stocks: every 5 min, weekdays 06:00-18:55 (covers the 06:30 catch-up fetch)
 */5 6-18 * * 1-5 $WEB/venv/bin/python3 $WEB/scripts/check_alerts.py --announcements >> /tmp/check_alerts.log 2> >(tee -a /tmp/check_alerts.log >&2)
+# Daily digest after the close, for users who opted in: 16:45 Sydney is 15:45 here in summer
+# and 16:45 in winter, so run at both; the script waits for 16:45 Sydney and sends once a day.
+45 15,16 * * 1-5 $WEB/venv/bin/python3 $WEB/scripts/send_digest.py >> /tmp/send_digest.log 2> >(tee -a /tmp/send_digest.log >&2)
 
 # Kronos predictions + backtest — weekdays 5:45pm UTC, after EOD + algos
 45 17 * * 1-5 $DATA/analysis/trigger_kronos.sh >> $DATA/analysis/logs/kronos_trigger.log 2> >(tee -a $DATA/analysis/logs/kronos_trigger.log >&2)
