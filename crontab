@@ -122,6 +122,8 @@ METALS_DEV_API_KEY=ISPELSLJBHBURV1FQYO43651FQYO4
 # kept copy if it passes integrity_check, so a bad snapshot never replaces the
 # last good one (and the failure goes to stderr → cron mail).
 45 5 * * * umask 077; sqlite3 $WEB/users.db ".backup $WEB/users.db.backup.tmp" && [ "$(sqlite3 $WEB/users.db.backup.tmp 'PRAGMA integrity_check')" = ok ] && mv $WEB/users.db.backup.tmp $WEB/users.db.backup.nightly || echo "$(date) users.db nightly snapshot FAILED; previous users.db.backup.nightly kept" >&2
+# Same for announcements.db (quiet then: first scrape is 06:30).
+46 5 * * * umask 077; sqlite3 $ANNOUNCEMENTS/announcements.db ".backup $ANNOUNCEMENTS/announcements.db.backup.tmp" && [ "$(sqlite3 $ANNOUNCEMENTS/announcements.db.backup.tmp 'PRAGMA integrity_check')" = ok ] && mv $ANNOUNCEMENTS/announcements.db.backup.tmp $ANNOUNCEMENTS/announcements.db.backup.nightly || echo "$(date) announcements.db nightly snapshot FAILED; previous announcements.db.backup.nightly kept" >&2
 
 # Weekly cleanup of fermi_api_calls rows older than 90 days (Sunday 3am)
 #0 3 * * 0 python3 -c "import sqlite3,os; from datetime import datetime,timezone,timedelta; db=os.path.join('$WEB','users.db'); c=sqlite3.connect(db); r=c.execute('DELETE FROM fermi_api_calls WHERE timestamp < ?',((datetime.now(timezone.utc)-timedelta(days=90)).strftime('%Y-%m-%dT%H:%M:%SZ'),)); c.commit(); print(f'Deleted {r.rowcount} rows'); c.close()" >> /tmp/fermi_cleanup.log 2> >(tee -a /tmp/fermi_cleanup.log >&2)
