@@ -116,6 +116,13 @@ METALS_DEV_API_KEY=ISPELSLJBHBURV1FQYO43651FQYO4
 # Daily FX rates (7 days/week) — 21:35 UTC (5 min after crypto)
 35 21 * * * python3 $DATA/scripts/fetch_currencies.py --db $STOCKDB/stockdb.db >> /tmp/fetch_currencies.log 2> >(tee -a /tmp/fetch_currencies.log >&2)
 
+# Nightly users.db snapshot — 05:45 Brisbane, before the 06:15 root rsync backup,
+# so that backup copies a consistent file rather than the live db mid-write.
+# .backup is WAL-safe. Written to a temp file and only moved over the single
+# kept copy if it passes integrity_check, so a bad snapshot never replaces the
+# last good one (and the failure goes to stderr → cron mail).
+45 5 * * * umask 077; sqlite3 $WEB/users.db ".backup $WEB/users.db.backup.tmp" && [ "$(sqlite3 $WEB/users.db.backup.tmp 'PRAGMA integrity_check')" = ok ] && mv $WEB/users.db.backup.tmp $WEB/users.db.backup.nightly || echo "$(date) users.db nightly snapshot FAILED; previous users.db.backup.nightly kept" >&2
+
 # Weekly cleanup of fermi_api_calls rows older than 90 days (Sunday 3am)
 #0 3 * * 0 python3 -c "import sqlite3,os; from datetime import datetime,timezone,timedelta; db=os.path.join('$WEB','users.db'); c=sqlite3.connect(db); r=c.execute('DELETE FROM fermi_api_calls WHERE timestamp < ?',((datetime.now(timezone.utc)-timedelta(days=90)).strftime('%Y-%m-%dT%H:%M:%SZ'),)); c.commit(); print(f'Deleted {r.rowcount} rows'); c.close()" >> /tmp/fermi_cleanup.log 2> >(tee -a /tmp/fermi_cleanup.log >&2)
 
