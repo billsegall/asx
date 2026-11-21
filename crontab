@@ -59,11 +59,14 @@ METALS_DEV_API_KEY=ISPELSLJBHBURV1FQYO43651FQYO4
 45 15,16 * * 1-5 $WEB/venv/bin/python3 $WEB/scripts/send_digest.py >> /tmp/send_digest.log 2> >(tee -a /tmp/send_digest.log >&2)
 
 # Kronos predictions + backtest — weekdays 5:45pm UTC, after EOD + algos
-# Kronos paper trading (asx-web/kronos_paper.py): 09:50 fallback plan, 09:55 pre-open entries,
-# 15:55 exits, 18:30 settle + plan the next cohort (Kronos import lands ~17:53)
-50 9 * * 1-5 cd $WEB && venv/bin/python3 scripts/kronos_paper.py plan >> /tmp/kronos_paper.log 2>&1
-55 9 * * 1-5 cd $WEB && venv/bin/python3 scripts/kronos_paper.py open >> /tmp/kronos_paper.log 2>&1
-55 15 * * 1-5 cd $WEB && venv/bin/python3 scripts/kronos_paper.py close >> /tmp/kronos_paper.log 2>&1
+# Kronos paper trading (asx-web/kronos_paper.py): 18:30 settle + plan the next cohort (Kronos import
+# lands ~17:53), 08:40 fallback plan, 09:55 Sydney pre-open entries, 15:55 Sydney exits (13:55 on
+# the 24/31 Dec early closes). Cron is Brisbane time, so open/close fire at both possible hours and
+# the script skips the one outside its Sydney window.
+40 8 * * 1-5 cd $WEB && venv/bin/python3 scripts/kronos_paper.py plan >> /tmp/kronos_paper.log 2>&1
+55 8,9 * * 1-5 cd $WEB && venv/bin/python3 scripts/kronos_paper.py open >> /tmp/kronos_paper.log 2>&1
+55 14,15 * * 1-5 cd $WEB && venv/bin/python3 scripts/kronos_paper.py close >> /tmp/kronos_paper.log 2>&1
+55 12,13 24,31 12 * cd $WEB && venv/bin/python3 scripts/kronos_paper.py close >> /tmp/kronos_paper.log 2>&1
 30 18 * * 1-5 cd $WEB && venv/bin/python3 scripts/kronos_paper.py settle >> /tmp/kronos_paper.log 2>&1
 45 17 * * 1-5 $DATA/analysis/trigger_kronos.sh >> $DATA/analysis/logs/kronos_trigger.log 2> >(tee -a $DATA/analysis/logs/kronos_trigger.log >&2)
 
