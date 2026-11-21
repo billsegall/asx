@@ -59,6 +59,12 @@ METALS_DEV_API_KEY=ISPELSLJBHBURV1FQYO43651FQYO4
 45 15,16 * * 1-5 $WEB/venv/bin/python3 $WEB/scripts/send_digest.py >> /tmp/send_digest.log 2> >(tee -a /tmp/send_digest.log >&2)
 
 # Kronos predictions + backtest — weekdays 5:45pm UTC, after EOD + algos
+# Kronos paper trading (asx-web/kronos_paper.py): 09:50 fallback plan, 09:55 pre-open entries,
+# 15:55 exits, 18:30 settle + plan the next cohort (Kronos import lands ~17:53)
+50 9 * * 1-5 cd $WEB && venv/bin/python3 scripts/kronos_paper.py plan >> /tmp/kronos_paper.log 2>&1
+55 9 * * 1-5 cd $WEB && venv/bin/python3 scripts/kronos_paper.py open >> /tmp/kronos_paper.log 2>&1
+55 15 * * 1-5 cd $WEB && venv/bin/python3 scripts/kronos_paper.py close >> /tmp/kronos_paper.log 2>&1
+30 18 * * 1-5 cd $WEB && venv/bin/python3 scripts/kronos_paper.py settle >> /tmp/kronos_paper.log 2>&1
 45 17 * * 1-5 $DATA/analysis/trigger_kronos.sh >> $DATA/analysis/logs/kronos_trigger.log 2> >(tee -a $DATA/analysis/logs/kronos_trigger.log >&2)
 
 # Weekly fundamentals from Yahoo Finance — Friday evening (after EOD + algos)
@@ -133,4 +139,5 @@ METALS_DEV_API_KEY=ISPELSLJBHBURV1FQYO43651FQYO4
 # cron's line-length limit): runs each repo's own pytest suite, reports
 # failures via push notification + a project memory note, takes no other
 # action (no edits/fixes/commits/pushes).
+47 5 * * * umask 077; sqlite3 $WEB/kronos_paper.db ".backup $WEB/kronos_paper.db.backup.tmp" && [ "$(sqlite3 $WEB/kronos_paper.db.backup.tmp 'PRAGMA integrity_check')" = ok ] && mv $WEB/kronos_paper.db.backup.tmp $WEB/kronos_paper.db.backup.nightly || echo "$(date) kronos_paper.db nightly snapshot FAILED; previous kronos_paper.db.backup.nightly kept" >&2
 0 15 * * * /home/bill/code/asx/nightly_test_check.sh >> /tmp/nightly_tests.log 2> >(tee -a /tmp/nightly_tests.log >&2)
